@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
+<h1>Event </h1>
+<% if current_user.id = @event.user_id then %>
+  <%= link_to 'Edit', edit_event_path(@event) %> | <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<br />
 
 <p>
   <b>User:</b>
@@ -6,8 +11,8 @@
 </p>
 
 <p>
-  <b>Event date:</b>
-  <%= @event.event_date %>
+  <b>Event Date:</b>
+  <%= @event.event_time %>
 </p>
 
 <p>
@@ -21,20 +26,23 @@
 </p>
 
 <p>
-  <b>Minimum:</b>
-  <%= @event.minimum %>
+  <b>Minimum Cash to Raise:</b>
+  <%= @event.minimum_raise %>
 </p>
 
 <p>
-  <b>Duration:</b>
-  <%= @event.duration %>
+  <b>Bidding End:</b>
+  <%= @event.raise_end %>
 </p>
 
 <p>
   <b>Description:</b>
   <%= @event.description %>
 </p>
+<p>
+  <b>Custom URL:</b>
+  <%= @event.custom_url %>
+</p>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
 

@@ -7,29 +7,20 @@
 <table>
   <tr>
     <th>User</th>
-    <th>Event Date</th>
     <th>Title</th>
+    <th>Event Date</th>
     <th>Location</th>
-    <th>Minimum</th>
-    <th>Duration</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Bidding End</th>
   </tr>
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.user_id %></td>
+    <td><%= link_to event.user.profile.user_name, '/profile/'+ event.user.profile.user_name %></td>
+    <td><%= link_to event.title, '/event/' + event.custom_url %></td>
+
     <td><%= event.event_time %></td>
-    <td><%= event.title %></td>
     <td><%= event.location %></td>
-    <td><%= event.minimum %></td>
-    <td><%= event.duration %></td>
-    <td><%= event.description %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= event.raise_end %></td>
   </tr>
 <% end %>
 </table>

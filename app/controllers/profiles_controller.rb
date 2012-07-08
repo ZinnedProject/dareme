@@ -4,10 +4,12 @@ class ProfilesController < ApplicationController
   def show
 
     if params[:user_name].nil?
-      @profile = current_user.profile if @profile.nil?
+      @profile = current_user.profile
     else
       @profile = Profile.find_by_user_name(params[:user_name].downcase)
     end
+
+    @events = Event.find_all_by_user_id(@profile.user_id)
 
     respond_to do |format|
       format.html # show.html.erb

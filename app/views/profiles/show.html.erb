@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
+<h1>Profile</h1>
+
+<% if current_user.id = @profile.user_id then %>
+  <%= link_to 'Edit', edit_profile_path(@profile) %> 
+<% end %>
+<br />
 
 <p>
   <b>First name:</b>
@@ -16,14 +22,39 @@
 </p>
 
 <p>
-  <b>Integer:</b>
+  <b>User Name:</b>
   <%= @profile.user_name %>
 </p>
+<p>
+  <b>Custom URL:</b>
+  <%= request.protocol + request.host_with_port + '/' + @profile.user_name %>
+</p>
+
 
 <p>
   <b>About:</b>
   <%= @profile.about %>
 </p>
+<br />
+<br />
 
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<h1>Events</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Event Date</th>
+    <th>Location</th>
+    <th>Bidding End</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= link_to event.title, '/event/' + event.custom_url %></td>
+    <td><%= event.event_time %></td>
+    <td><%= event.location %></td>
+    <td><%= event.raise_end %></td>
+  </tr>
+<% end %>
+</table>

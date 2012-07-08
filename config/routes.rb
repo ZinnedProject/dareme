@@ -13,6 +13,7 @@ Dareme::Application.routes.draw do
 
   #Go to username
   match '/profile/:user_name' => 'profiles#show'
+  match '/event/:custom_url' => 'events#show'
 
 
   # The priority is based upon order of creation:

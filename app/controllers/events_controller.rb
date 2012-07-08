@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.default_order
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find_by_custom_url(params[:custom_url].downcase)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -47,8 +47,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
+        format.html { redirect_to '/event/'+@event.custom_url, notice: 'Event was successfully created.' }
+        format.json { render json: '/event/'+@event.custom_url, status: :created, location: @event }
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }

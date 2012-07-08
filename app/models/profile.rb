@@ -20,6 +20,7 @@ class Profile < ActiveRecord::Base
   	validates :user_name, :length => {:minimum => 4, :too_short => "%{count} characters is the manimum allowed"}
   	validates :user_name, :uniqueness => { :case_sensitive => false }
 
+  
 
   #Functions
   def full_name=(fullname)

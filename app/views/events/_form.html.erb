@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :event_time %><br />
-    <%= f.number_field :event_time %>
+    <%= f.datetime_select :event_time %>
   </div>
   <div class="field">
     <%= f.label :location %><br />
@@ -29,8 +29,12 @@
     <%= f.text_field :minimum_raise %>
   </div>
   <div class="field">
-    <%= f.label 'Funding duration' %><br />
-    <%= f.text_field :duration, :class => "datepicker" %>
+    <%= f.label 'Bidding End' %><br />
+    <%= f.datetime_select :raise_end %>
+  </div>
+  <div class="field">
+    <%= f.label 'Custom SLUG / URL' %><br />
+    <%= f.text_field :custom_url %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
