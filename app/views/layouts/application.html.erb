@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dareme</title>
+  <title>Dare Me</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,9 +11,12 @@
 <p class="alert"><%= alert %></p>
 <br />
 <ul class="hmenu">
-  <li> <%= link_to 'Profile', profile_path %></li> 
+	<% if user_signed_in? %>
+  <li> <%= link_to 'Show Dares', '/events'%> </li>  
+  <li> <%= link_to 'Profile', '/profiles/' + current_user.profile.user_name %></li> 
   <%= render 'devise/menu/registration_items' %>
   <%= render 'devise/menu/login_items' %>
+  <% end %>
 </ul>
 <br />
 <%= yield %>

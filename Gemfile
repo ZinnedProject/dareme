@@ -24,11 +24,16 @@ gem 'therubyracer'
 #Background Jobs
 #	gem "queue_classic", "2.0.0"
 
-#Administrative tool for manually editing records
-gem 'rails_admin'
+#Formtastic for better forms
+	gem 'formtastic'
+#Youtube Gem
+	gem 'youtube_it'
 
-gem 'chosen-rails'	#Nice looking JQuery multi-select boxes
-gem 'jquery-rails'
+#Administrative tool for manually editing records
+	gem 'rails_admin'
+
+	gem 'chosen-rails'	#Nice looking JQuery multi-select boxes
+	gem 'jquery-rails'
 
 group :development, :test do
 	gem 'quiet_assets'	#Removes asset pipelines in logger window

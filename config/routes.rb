@@ -1,5 +1,7 @@
 Dareme::Application.routes.draw do
 
+  resources :events
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   #Default
@@ -10,7 +12,7 @@ Dareme::Application.routes.draw do
     devise_for :users
 
   #Go to username
-  match '/profile/:user_name' => 'profiles#show'#, :as => 'fu'
+  match '/profile/:user_name' => 'profiles#show'
 
 
   # The priority is based upon order of creation:

@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707174620) do
+ActiveRecord::Schema.define(:version => 20120708131358) do
+
+  create_table "events", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_time"
+    t.string   "title"
+    t.string   "location"
+    t.decimal  "minimum_raise"
+    t.integer  "duration"
+    t.text     "description"
+    t.string   "custom_url"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "events", ["custom_url"], :name => "index_events_on_custom_url"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name"

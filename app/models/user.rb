@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   #Associations
 		has_one :profile, :inverse_of => :user, :dependent => :destroy
+    has_many :events, :inverse_of => :user, :dependent => :destroy
 
   #Attributes
   	attr_accessible :email, :password, :password_confirmation, :remember_me
