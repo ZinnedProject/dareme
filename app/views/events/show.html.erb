@@ -37,7 +37,7 @@
 
 <p>
   <b>Description:</b>
-  <%= @event.description %>
+  <%= @event.description.html_safe if not @event.description.nil? %>
 </p>
 <p>
   <b>Custom URL:</b>

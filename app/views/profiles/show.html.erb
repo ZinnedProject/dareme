@@ -36,7 +36,7 @@ Profile Image<br/>
 
 <p>
   <b>About:</b>
-  <%= @profile.about %>
+  <%= @profile.about.html_safe if not @profile.about.nil? %>
 </p>
 <br />
 

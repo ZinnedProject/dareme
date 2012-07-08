@@ -1,11 +1,11 @@
 Dareme::Application.routes.draw do
 
+  #Functinoality  
+    mount Ckeditor::Engine => '/ckeditor'
+    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   #Events
     resources :events
-
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
   #Default
     root :to => "profiles#show"
   #Profile Resources

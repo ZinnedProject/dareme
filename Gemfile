@@ -20,12 +20,16 @@ gem 'therubyracer'
 #Image processing
 	gem 'carrierwave'
 	gem "rmagick"		#sudo apt-get install libmagickwand-dev
+	gem "mini_magick"	
 
 #Background Jobs
 #	gem "queue_classic", "2.0.0"
 
 #Youtube Gem
 	gem 'youtube_it'
+
+#WYSIWYG Editor
+	gem 'ckeditor', "3.7.1" 				#https://github.com/galetahub/ckeditor
 
 #Administrative tool for manually editing records
 	gem 'rails_admin'

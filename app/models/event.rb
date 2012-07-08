@@ -2,7 +2,6 @@ class Event < ActiveRecord::Base
 
 	#Associations
 	belongs_to :user, :inverse_of => :events
-	has_many :albums, :as => :albumable, :dependent => :destroy
 
   #Attributes
   attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
@@ -10,7 +9,6 @@ class Event < ActiveRecord::Base
 
   #Callbacks
     before_save { |event| event.custom_url = event.custom_url.downcase }
-    after_create :create_album
 
   #Scopes
   	scope :default_order, order(:raise_end)
@@ -31,11 +29,5 @@ class Event < ActiveRecord::Base
 
 		validates :minimum_raise, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => -1, :less_than => 250}
 
-  def create_album  #When a user is created make sure an album is created for them as well
-    album = Album.new
-    album.albumable = self
-    album.title ="Even Photos"
-    album.save
-  end
 
 end
