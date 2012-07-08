@@ -18,8 +18,8 @@ gem 'therubyracer'
 #https://github.com/seyhunak/twitter-bootstrap-rails/
 
 #Image processing
-#	gem 'carrierwave'
-#	gem "rmagick"		#sudo apt-get install libmagickwand-dev
+	gem 'carrierwave'
+	gem "rmagick"		#sudo apt-get install libmagickwand-dev
 
 #Background Jobs
 #	gem "queue_classic", "2.0.0"

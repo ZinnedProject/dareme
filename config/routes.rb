@@ -1,6 +1,8 @@
 Dareme::Application.routes.draw do
 
-  resources :events
+
+  #Events
+    resources :events
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -11,7 +13,10 @@ Dareme::Application.routes.draw do
   #Devise / Login 
     devise_for :users
 
-  #Go to username
+  #Albums
+    resources :albums, :only => [:show]
+
+  #Go to special names
   match '/profile/:user_name' => 'profiles#show'
   match '/event/:custom_url' => 'events#show'
 

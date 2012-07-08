@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 <h1>Profile</h1>
 
+
 <% if current_user.id = @profile.user_id then %>
   <%= link_to 'Edit', edit_profile_path(@profile) %> 
 <% end %>
 <br />
-
+Profile Image<br/>
+<%= image_tag @profile.image_url(:thumb_200) if @profile.image? %>
+<br />
 <p>
   <b>First name:</b>
   <%= @profile.first_name %>
@@ -36,8 +39,6 @@
   <%= @profile.about %>
 </p>
 <br />
-<br />
-
 
 <h1>Events</h1>
 

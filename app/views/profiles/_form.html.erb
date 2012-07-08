@@ -20,16 +20,19 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :user_name %><br />
     <%= f.text_field :user_name %>
   </div>
   <div class="field">
     <%= f.label :about %><br />
     <%= f.text_field :about %>
+  </div>
+  <div class="field">
+    <%= f.file_field :image %>
+  </div>  
+    <div class="field">
+    <%= f.label :remote_image_url, "or image URL" %><br />
+    <%= f.text_field :remote_image_url %>
   </div>
   <div class="actions">
     <%= f.submit %>

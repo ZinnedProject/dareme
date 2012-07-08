@@ -3,10 +3,12 @@ class Profile < ActiveRecord::Base
   	belongs_to :user, :inverse_of => :profile
 
   #Attributes
-  	attr_accessible :about, :first_name, :last_name, :user_id, :user_name
+  	attr_accessible :about, :first_name, :last_name, :user_id, :user_name, :image, :remote_image_url
+    mount_uploader :image, ImageUploader
 
   #Callbacks
     before_save { |profile| profile.user_name = profile.user_name.downcase }
+
 
   #Validation
   	validates :user_name, :presence => true

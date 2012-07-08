@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find_by_custom_url(params[:custom_url].downcase)
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }

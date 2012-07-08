@@ -6,8 +6,8 @@
 <br />
 
 <p>
-  <b>User:</b>
-  <%= @event.user_id %>
+  <b>User Name:</b>
+  <%= @event.user.profile.user_name %>
 </p>
 
 <p>
@@ -41,8 +41,7 @@
 </p>
 <p>
   <b>Custom URL:</b>
-  <%= @event.custom_url %>
+  <%= request.protocol + request.host_with_port + '/' + @event.custom_url %>
 </p>
-
 
 
