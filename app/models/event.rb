@@ -27,8 +27,13 @@ class Event < ActiveRecord::Base
   	validates :custom_url, :length => {:minimum => 4, 
   			:too_short => "%{count} characters is the manimum allowed"}
   	validates :custom_url, :uniqueness => { :case_sensitive => false }
-
 		validates :minimum_raise, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => -1, :less_than => 250}
 
-
+    validates :description, :presence => true
+    validates :raise_end, :presence => true
+    validates :event_time, :presence => true
+    validates :location, :presence => true
+    validates :title, :presence => true
+    validates :custom_url, :presence => true
 end
+

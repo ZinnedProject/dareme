@@ -12,6 +12,8 @@ class Profile < ActiveRecord::Base
 
 
   #Validation
+    validates :first_name, :presence => true
+    validates :last_name, :presence => true
   	validates :user_name, :presence => true
   	validates :user_name, :format => { :with => /^\w+$/i,
     	:message => "only letters and numbers allowed" }
@@ -22,8 +24,6 @@ class Profile < ActiveRecord::Base
   	validates :user_name, :length => {:maximum => 50, :too_long => "%{count} characters is the maximum allowed"}
   	validates :user_name, :length => {:minimum => 4, :too_short => "%{count} characters is the manimum allowed"}
   	validates :user_name, :uniqueness => { :case_sensitive => false }
-
-  
 
   #Functions
   def full_name=(fullname)

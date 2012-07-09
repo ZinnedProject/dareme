@@ -6,11 +6,12 @@
     <th>Content</th>
     <th></th>
   </tr>
-
+<%= will_paginate comments %>
+<br />
 <% comments.each do |comment| %>
   <tr>
     <td><%= image_tag comment.user.profile.image_url(:thumb_50) if comment.user.profile.image? %></td>
-    <td><%= comment.created_at.strftime("%m-%d-%Y %H:%M") %></
+    <td><%= comment.created_at.strftime("%m-%d-%Y %H:%M") %></td>
     <td><%= link_to comment.user.profile.user_name, '/profile/' + comment.user.profile.user_name %></td>
     <td><%= comment.content %></td>
     <td>

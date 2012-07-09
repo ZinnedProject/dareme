@@ -10,7 +10,8 @@ class CommentsController < ApplicationController
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render json: @commentable, status: :created, location: @comment }
       else
-        format.html { render action: "new" }
+        
+        format.html { redirect_to :back, notice: 'Sorry we were unable to save your comment' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -34,5 +35,7 @@ class CommentsController < ApplicationController
     end
 
    end
+
+
 
 end
