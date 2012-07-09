@@ -94,6 +94,7 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
+    geocoder (1.1.2)
     growl (1.0.3)
     guard (1.2.3)
       listen (>= 0.4.2)
@@ -292,6 +293,7 @@ DEPENDENCIES
   devise
   execjs
   factory_girl_rails (~> 3.0)
+  geocoder
   growl
   guard-rspec
   guard-spork!

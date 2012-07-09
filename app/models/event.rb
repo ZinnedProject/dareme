@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
 
   #Callbacks
     before_save { |event| event.custom_url = event.custom_url.downcase }
+    after_validation :geocode, :if => :location_changed?
 
   #Scopes
   	scope :default_order, order(:raise_end)
@@ -35,5 +36,9 @@ class Event < ActiveRecord::Base
     validates :location, :presence => true
     validates :title, :presence => true
     validates :custom_url, :presence => true
+
+  #Other
+    geocoded_by :location
+
 end
 

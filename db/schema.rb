@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709022255) do
+ActiveRecord::Schema.define(:version => 20120709134710) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20120709022255) do
     t.datetime "updated_at",    :null => false
     t.datetime "event_time"
     t.datetime "raise_end"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "events", ["custom_url"], :name => "index_events_on_custom_url"

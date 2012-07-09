@@ -31,6 +31,9 @@ gem 'therubyracer'
 #Youtube Gem
 	gem 'youtube_it'
 
+#Get the location of an event
+	gem 'geocoder'
+
 #WYSIWYG Editor
 	gem 'ckeditor', "3.7.1" 				#https://github.com/galetahub/ckeditor
 
