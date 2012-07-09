@@ -13,7 +13,7 @@ Dareme::Application.routes.draw do
       resources :comments, :only => [:destroy, :create]
     end
   #Default
-    root :to => "profiles#show"
+    root :to => "events#index"
   #Profile Resources
      resources :profiles, :only => [:show, :update, :edit] do
         resources :comments, :only => [:destroy, :create]

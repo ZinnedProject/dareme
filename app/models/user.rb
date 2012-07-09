@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #Associations (Remove DD for all associations.  Destory = inactivate)
 		has_one :profile, :inverse_of => :user, :dependent => :destroy
     has_many :events, :inverse_of => :user, :dependent => :destroy
-    has_many :comments, :inverse_of => :comments, :dependent => :destroy
+    has_many :comments, :inverse_of => :user, :dependent => :destroy
 
   #Attributes
   	attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -20,8 +20,7 @@ class User < ActiveRecord::Base
     profile = Profile.new
     profile.user_id = id
     profile.user_name = "newuser" + (id+12000).to_s()
-    profile.save
+    profile.save(validate: false)
   end
-
 
 end

@@ -34,6 +34,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     #process :resize_to_limit => [100, 100]
     process :resize_to_fill => [50, 50]
   end
+  
+  def default_url   
+    if Rails.env.production?
+      asset_path([version_name, "default.gif"].compact.join('_'))
+    else
+      [version_name, "default.gif"].compact.join('_')     
+    end 
+  end
+
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
