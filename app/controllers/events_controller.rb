@@ -17,7 +17,8 @@ class EventsController < ApplicationController
   def show
 #    Rails.logger.info("PARAMS: #{params.inspect}")   
     @event = Event.find_by_custom_url(params[:custom_url].downcase)
-    @comments = @event.comments.paginate(:page => params[:page], :per_page => 10)
+    #@comments = @event.comments.paginate(:page => params[:page], :per_page => 10)
+    @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
 

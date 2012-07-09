@@ -6,7 +6,8 @@
     <th>Content</th>
     <th></th>
   </tr>
-<%= will_paginate comments %>
+<%# will_paginate comments %>
+<%= paginate comments %>
 <br />
 <% comments.each do |comment| %>
   <tr>

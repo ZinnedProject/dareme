@@ -10,7 +10,8 @@ class ProfilesController < ApplicationController
     end
 
     @events = Event.find_all_by_user_id(@profile.user_id)
-    @comments = current_user.profile.comments.paginate(:page => params[:page], :per_page => 10)
+    #@comments = current_user.profile.comments.paginate(:page => params[:page], :per_page => 10)
+    @comments = current_user.profile.comments.page(params[:page]).per(10)
     
     @comment = Comment.new
     @commentable = @profile

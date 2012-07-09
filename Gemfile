@@ -26,7 +26,7 @@ gem 'therubyracer'
 #	gem "queue_classic", "2.0.0"
 
 #Pagination
-	gem 'will_paginate', '~> 3.0'
+	#gem 'will_paginate', '~> 3.0'
 
 #Youtube Gem
 	gem 'youtube_it'
