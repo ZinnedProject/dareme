@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_filter :load_commentable
 
   def create
-    #Rails.logger.info("commentable: #{@commentable.inspect}")   
     @comment = @commentable.comments.new(params[:comment])
     @comment.user_id = current_user.id
     respond_to do |format|
@@ -10,7 +9,6 @@ class CommentsController < ApplicationController
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render json: @commentable, status: :created, location: @comment }
       else
-        
         format.html { redirect_to :back, notice: 'Sorry we were unable to save your comment' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end

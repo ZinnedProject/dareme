@@ -2,6 +2,9 @@
 
 FactoryGirl.define do
   factory :comment do
-    content "MyText"
+    content "Test Comment"
+    user_id 1
+#    commentable_type "event"
+#    commentable_id 1
   end
 end

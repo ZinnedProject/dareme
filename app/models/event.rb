@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
 
   #Attributes
     attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
-  	 :title, :user_id, :custom_url, :longitude,:latitude
+  	 :title, :user_id, :custom_url, :longitude,:latitude, :created_at, :updated_at
 
   #Callbacks
     before_save { |event| event.custom_url = event.custom_url.downcase }
@@ -36,6 +36,7 @@ class Event < ActiveRecord::Base
     validates :location, :presence => true
     validates :title, :presence => true
     validates :custom_url, :presence => true
+    validates :user_id, :presence => true
 
   #Other
     geocoded_by :location
@@ -43,12 +44,15 @@ class Event < ActiveRecord::Base
   #Functions
 
     def geocoding
-      if location_changed?
+      if location_changed? and not location.nil? and not Rails.env.test? and not location.empty?
         geocode
+      else
+        false
       end
     end
 
 
 
 end
+
 

@@ -31,5 +31,12 @@ describe EventsController do
       delete("/events/1").should route_to("events#destroy", :id => "1")
     end
 
+    it "routes to #show" do
+      @user = FactoryGirl.create(:user)
+      @event = FactoryGirl.create(:event, custom_url: "fish", user_id: @user.id)
+      get("/events/fish").should route_to("events#show", :id => "fish")
+    end
+
+
   end
 end

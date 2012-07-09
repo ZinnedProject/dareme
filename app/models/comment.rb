@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 	#Associations
-  	belongs_to :imageable, :polymorphic => true
+  	belongs_to :commentable, :polymorphic => true
   	belongs_to :user, :inverse_of => :comments
 
   #Attributes
@@ -17,6 +17,6 @@ class Comment < ActiveRecord::Base
 		validates :content, :presence => true
 		validates :content, :length => {:maximum => 5000, 
   		:too_long => "%{count} characters is the maximum allowed"}
-
+    validates :user_id, :presence => true
 
 end

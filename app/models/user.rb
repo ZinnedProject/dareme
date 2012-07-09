@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #Associations (Remove DD for all associations.  Destory = inactivate)
 		has_one :profile, :inverse_of => :user, :dependent => :destroy
     has_many :events, :inverse_of => :user, :dependent => :destroy
-    has_many :comments, :inverse_of => :user, :dependent => :destroy
+    has_many :comments, :inverse_of => :comments, :dependent => :destroy
 
   #Attributes
   	attr_accessible :email, :password, :password_confirmation, :remember_me

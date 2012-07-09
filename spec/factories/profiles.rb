@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :profile do
     first_name "MyString"
     last_name "MyString"
-    user_id "MyString"
-    integer "MyString"
+    user_id 1
+    user_name "iamawesome"
     about "MyString"
   end
 end

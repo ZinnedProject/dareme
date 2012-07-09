@@ -3,7 +3,8 @@ class Profile < ActiveRecord::Base
   	belongs_to :user, :inverse_of => :profile
 
   #Attributes
-  	attr_accessible :about, :first_name, :last_name, :user_id, :user_name, :image, :remote_image_url
+  	attr_accessible :about, :first_name, :last_name, :user_id, :user_name, :image, :remote_image_url,
+      :updated_at, :created_at
     mount_uploader :image, ImageUploader
     has_many :comments, :as => :commentable
 
@@ -24,6 +25,10 @@ class Profile < ActiveRecord::Base
   	validates :user_name, :length => {:maximum => 50, :too_long => "%{count} characters is the maximum allowed"}
   	validates :user_name, :length => {:minimum => 4, :too_short => "%{count} characters is the manimum allowed"}
   	validates :user_name, :uniqueness => { :case_sensitive => false }
+
+    validates :user_id, :presence => true
+
+
 
   #Functions
   def full_name=(fullname)
