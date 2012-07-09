@@ -15,8 +15,12 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    Rails.logger.info("PARAMS: #{params.inspect}")   
+#    Rails.logger.info("PARAMS: #{params.inspect}")   
     @event = Event.find_by_custom_url(params[:custom_url].downcase)
+    @comments = @event.comments
+    @comment = Comment.new
+    @commentable = @event
+
     
     respond_to do |format|
       format.html # show.html.erb

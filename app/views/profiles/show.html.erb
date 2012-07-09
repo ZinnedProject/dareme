@@ -59,3 +59,9 @@ Profile Image<br/>
   </tr>
 <% end %>
 </table>
+
+<br />
+
+<h1>Comments </h1>
+<%= render "/comments/show_comments", :comments => @comments %>
+<%= render '/comments/form' %>

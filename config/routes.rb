@@ -1,15 +1,24 @@
 Dareme::Application.routes.draw do
 
+
+
   #Functinoality  
     mount Ckeditor::Engine => '/ckeditor'
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
+    resources :comments, :only => [:destroy]
 
   #Events
-    resources :events
+    resources :events do
+      resources :comments, :only => [:destroy, :create]
+    end
   #Default
     root :to => "profiles#show"
   #Profile Resources
-    resources :profiles, :only => [:show, :update, :edit]
+     resources :profiles, :only => [:show, :update, :edit] do
+        resources :comments, :only => [:destroy, :create]
+     end
+
   #Devise / Login 
     devise_for :users
 

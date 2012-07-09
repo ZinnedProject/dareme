@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th></th>
+    <th>From</th>
+    <th>Date</th>
+    <th>Content</th>
+    <th></th>
+  </tr>
+
+<% comments.each do |comment| %>
+  <tr>
+    <td><%= image_tag comment.user.profile.image_url(:thumb_50) if comment.user.profile.image? %></td>
+    <td><%= comment.created_at.strftime("%m-%d-%Y %H:%M") %></
+    <td><%= link_to comment.user.profile.user_name, '/profile/' + comment.user.profile.user_name %></td>
+    <td><%= comment.content %></td>
+    <td>
+    	<% if current_user.id = comment.user_id or current_user.id = @imagable.user_id then %>
+    		<%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+    	<% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />

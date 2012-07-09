@@ -7,8 +7,14 @@
 
 <p>
   <b>User Name:</b>
-  <%= @event.user.profile.user_name %>
+  <%= link_to @event.user.profile.user_name, '/profile/' + @event.user.profile.user_name %>
 </p>
+
+<p>
+  <b>Custom URL:</b>
+  <%= request.protocol + request.host_with_port + '/' + @event.custom_url %>
+</p>
+
 
 <p>
   <b>Event Date:</b>
@@ -39,9 +45,8 @@
   <b>Description:</b>
   <%= @event.description.html_safe if not @event.description.nil? %>
 </p>
-<p>
-  <b>Custom URL:</b>
-  <%= request.protocol + request.host_with_port + '/' + @event.custom_url %>
-</p>
 
-
+<br />
+<h1>Comments </h1>
+<%= render "/comments/show_comments", :comments => @comments %>
+<%= render '/comments/form' %>

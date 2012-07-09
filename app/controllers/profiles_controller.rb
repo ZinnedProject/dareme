@@ -10,6 +10,9 @@ class ProfilesController < ApplicationController
     end
 
     @events = Event.find_all_by_user_id(@profile.user_id)
+    @comments = current_user.profile.comments
+    @comment = Comment.new
+    @commentable = @profile
 
     respond_to do |format|
       format.html # show.html.erb

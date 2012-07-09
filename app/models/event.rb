@@ -1,11 +1,12 @@
 class Event < ActiveRecord::Base
 
 	#Associations
-	belongs_to :user, :inverse_of => :events
+	  belongs_to :user, :inverse_of => :events
+    has_many :comments, :as => :commentable
 
   #Attributes
-  attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
-  	:title, :user_id, :custom_url
+    attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
+  	 :title, :user_id, :custom_url
 
   #Callbacks
     before_save { |event| event.custom_url = event.custom_url.downcase }
