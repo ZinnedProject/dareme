@@ -6,11 +6,11 @@ class Event < ActiveRecord::Base
 
   #Attributes
     attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
-  	 :title, :user_id, :custom_url
+  	 :title, :user_id, :custom_url, :longitude,:latitude
 
   #Callbacks
     before_save { |event| event.custom_url = event.custom_url.downcase }
-    after_validation :geocode, :if => :location_changed?
+    after_validation :geocoding
 
   #Scopes
   	scope :default_order, order(:raise_end)
@@ -39,6 +39,16 @@ class Event < ActiveRecord::Base
 
   #Other
     geocoded_by :location
+
+  #Functions
+
+    def geocoding
+      if location_changed?
+        geocode
+      end
+    end
+
+
 
 end
 

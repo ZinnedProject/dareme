@@ -31,6 +31,7 @@
   <%= @event.location %>
 </p>
 
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=10&markers=#{@event.latitude}%2C#{@event.longitude}" %>
 <p>
   <b>Minimum Cash to Raise:</b>
   <%= @event.minimum_raise %>
