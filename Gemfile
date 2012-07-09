@@ -13,7 +13,7 @@ gem 'devise'
 gem 'yaml_db'
 
 gem 'execjs'
-gem 'therubyracer'
+#gem 'therubyracer'
 #gem 'bootstrap-sass', ['~> 2.0', '>= 2.0.3']
 #https://github.com/seyhunak/twitter-bootstrap-rails/
 
