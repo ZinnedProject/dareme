@@ -34,14 +34,16 @@ class ImageUploader < CarrierWave::Uploader::Base
     #process :resize_to_limit => [100, 100]
     process :resize_to_fill => [50, 50]
   end
-  
-  def default_url   
+ 
+   def default_url   
     if Rails.env.production?
-      Rails.logger.info("_______________--->PRODUCTION")
-      asset_path([version_name, "default.gif"].compact.join('_'))
+      #Rails.logger.info("_______________--->PRODUCTION")
+      #asset_path([version_name, "default.gif"].compact.join('_'))
+      [version_name, "default.gif"].compact.join('_')
     else
       Rails.logger.info("----------------_>NOT PRODUCTION")
-      [version_name, "default.gif"].compact.join('_')     
+      path_to_asset([version_name, "default.gif"].compact.join('_'))
+      #[version_name, "default.gif"].compact.join('_')     
     end 
   end
 
