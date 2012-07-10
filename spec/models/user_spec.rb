@@ -9,6 +9,7 @@ describe User do
   	@user = FactoryGirl.create(:user)
 		@profile = FactoryGirl.create(:profile, user_id: @user.id)
 		@event = FactoryGirl.create(:event, user_id: @user.id)
+		@comment = FactoryGirl.create(:comment, user_id: @user.id)
   end
 
 	subject { @user }
@@ -41,6 +42,11 @@ describe User do
   	it "Should respond to an event" do   		
   		@user.events.first.should eq(@event)
   	end
+  	it "Should respond to a comment I've left" do   		
+  		@user.comments.first.should eq(@comment)
+  	end
+
 	end
+
 
 end
