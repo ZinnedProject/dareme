@@ -7,9 +7,7 @@ describe User do
 
 	before do
   	@user = FactoryGirl.create(:user)
-		@profile = FactoryGirl.create(:profile, user_id: @user.id)
-		@event = FactoryGirl.create(:event, user_id: @user.id)
-		@comment = FactoryGirl.create(:comment, user_id: @user.id)
+
   end
 
 	subject { @user }
@@ -36,16 +34,41 @@ describe User do
 	
 
 	describe "Associations" do
+
+
   	it "Should respond to a user" do
+  		@profile = FactoryGirl.create(:profile, user_id: @user.id)
   		@user.profile.should eq(@profile)
   	end
   	it "Should respond to an event" do   		
+  		@event = FactoryGirl.create(:event, user_id: @user.id)
   		@user.events.first.should eq(@event)
   	end
   	it "Should respond to a comment I've left" do   		
+  		@comment = FactoryGirl.create(:comment, user_id: @user.id)
   		@user.comments.first.should eq(@comment)
   	end
-
+  	it "Should respond to followings (show a list of people who I am following" do
+			@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+			@follower = FactoryGirl.create(:following, user_id: @user.id, followable:@user2)
+   		@user.follows.first.should eq(@follower)
+  	end
+  	it "Should respond to followers (show a list of people who are following me" do
+			@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+			@follower = FactoryGirl.create(:following, user_id: @user2.id, followable:@user)
+   		@user.followers.first.should eq(@user2)
+  	end
+  	it "Should respond to followed_user" do
+			@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+			@follower = FactoryGirl.create(:following, user_id: @user.id, followable:@user2)
+   		@user.followed_users.first.should eq(@user2)
+  	end
+  	it "Should respond to followed_events" do
+			@event = FactoryGirl.create(:event, user_id: @user.id)
+			puts @event.to_yaml
+			@follower = FactoryGirl.create(:following, user_id: @user.id, followable:@event)
+   		@user.followed_events.first.should eq(@event)
+  	end
 	end
 
 

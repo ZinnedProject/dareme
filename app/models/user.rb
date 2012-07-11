@@ -8,7 +8,17 @@ class User < ActiveRecord::Base
   #Associations (Remove DD for all associations.  Destory = inactivate)
 		has_one :profile, :inverse_of => :user, :dependent => :destroy
     has_many :events, :inverse_of => :user, :dependent => :destroy
+
     has_many :comments, :inverse_of => :user, :dependent => :destroy
+
+    #user.follows
+    has_many :follows, class_name: 'Following', foreign_key: "user_id", inverse_of: :user
+    has_many :followed_events, through: :follows, source: :followable, source_type: 'Event'
+    has_many :followed_users, through: :follows, source: :followable, source_type: 'User'
+
+    #user.followers
+    has_many :followings, :as => :followable
+    has_many :followers, :through => :followings, :source => :user
 
   #Attributes
   	attr_accessible :email, :password, :password_confirmation, :remember_me

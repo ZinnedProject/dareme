@@ -2,6 +2,8 @@ Dareme::Application.routes.draw do
 
 
 
+  resources :followings
+
   #Functinoality  
     mount Ckeditor::Engine => '/ckeditor'
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
