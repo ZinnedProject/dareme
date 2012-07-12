@@ -2,7 +2,8 @@ Dareme::Application.routes.draw do
 
 
 
-  resources :followings
+  #resources :followings, only: [:create, :destroy]
+
 
   #Functinoality  
     mount Ckeditor::Engine => '/ckeditor'
@@ -14,8 +15,10 @@ Dareme::Application.routes.draw do
     resources :events do
       resources :comments, :only => [:destroy, :create]
     end
+
   #Default
     root :to => "events#index"
+
   #Profile Resources
      resources :profiles, :only => [:show, :update, :edit] do
         resources :comments, :only => [:destroy, :create]
@@ -24,12 +27,11 @@ Dareme::Application.routes.draw do
   #Devise / Login 
     devise_for :users
 
-  #Albums
-    resources :albums, :only => [:show]
-
   #Go to special names
-  match '/profile/:user_name' => 'profiles#show'
-  match '/event/:custom_url' => 'events#show'
+    match '/profile/:user_name' => 'profiles#show' 
+    match '/profile/:user_name/follow' => 'followings#create', as: 'create_following'
+
+    match '/event/:custom_url' => 'events#show'
 
 
   # The priority is based upon order of creation:

@@ -1,17 +1,16 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
+  include ApplicationHelper
 
   def show
 
-    if params[:user_name].nil?
-      @profile = current_user.profile
-    else
-      @profile = Profile.find_by_user_name(params[:user_name].downcase)
-    end
+    @profile = get_profile(params)
+
     @events = Event.find_all_by_user_id(@profile.user_id)
     #@comments = current_user.profile.comments.paginate(:page => params[:page], :per_page => 10)
     @comments = @profile.comments.page(params[:page]).per(10)
-    
+
+
     @comment = Comment.new
     @commentable = @profile
 

@@ -7,7 +7,6 @@ describe User do
 
 	before do
   	@user = FactoryGirl.create(:user)
-
   end
 
 	subject { @user }
@@ -64,8 +63,7 @@ describe User do
    		@user.followed_users.first.should eq(@user2)
   	end
   	it "Should respond to followed_events" do
-			@event = FactoryGirl.create(:event, user_id: @user.id)
-			puts @event.to_yaml
+			@event = FactoryGirl.create(:event, user_id: @user.id)			
 			@follower = FactoryGirl.create(:following, user_id: @user.id, followable:@event)
    		@user.followed_events.first.should eq(@event)
   	end

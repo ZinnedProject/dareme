@@ -3,6 +3,8 @@
 
 <% if current_user.id == @profile.user_id then %>
   <%= link_to 'Edit', edit_profile_path(@profile) %> 
+<% else %>
+  <%= link_to 'Follow Me!', create_following_path() %> 
 <% end %>
 <br />
 Profile Image<br/>

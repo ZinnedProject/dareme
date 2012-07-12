@@ -1,6 +1,6 @@
 class FollowingsController < ApplicationController
-  # GET /followings
-  # GET /followings.json
+include ApplicationHelper
+
   def index
     @followings = Following.all
 
@@ -11,24 +11,19 @@ class FollowingsController < ApplicationController
   end
 
 
-  # POST /followings
-  # POST /followings.json
   def create
-    @following = Following.new(params[:following])
+    @following = Following.new(followable:get_profile(params).user, user_id:current_user.id )  
 
+    #Rails.logger.info("PARAMS: #{params.inspect}")   
     respond_to do |format|
       if @following.save
-        format.html { redirect_to @following, notice: 'Following was successfully created.' }
-        format.json { render json: @following, status: :created, location: @following }
+        format.html { redirect_to :back, notice: 'Are are now following...' }
       else
         format.html { render action: "new" }
-        format.json { render json: @following.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /followings/1
-  # DELETE /followings/1.json
   def destroy
     @following = Following.find(params[:id])
     @following.destroy
