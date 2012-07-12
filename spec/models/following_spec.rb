@@ -7,7 +7,7 @@ describe Following do
 
 	before do
   	@user = FactoryGirl.create(:user)
-  	@user2 = FactoryGirl.create(:user, email: "aefije@eee.com")
+  	@user2 = FactoryGirl.create(:user, email: "aefije@eee.com", slug: "fishy")
   	@following = FactoryGirl.create(:following, user_id: @user.id, followable: @user2)
 
   end

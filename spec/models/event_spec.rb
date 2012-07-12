@@ -41,7 +41,7 @@ describe Event do
   		@event.comments.first.should eq(@comment)
   	end
   	it "Should respond to followers (show a list of people who are following me" do
-			@user = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+			@user = FactoryGirl.create(:user, email:"asdfdf@aseij.com", slug:"fishy")
 			FactoryGirl.create(:following, user_id: @user.id, followable:@event)
    		@event.followers.first.should eq(@user)
   	end

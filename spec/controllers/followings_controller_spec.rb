@@ -5,12 +5,12 @@ describe FollowingsController do
 
    describe "POST create" do
      describe "with valid params" do
-       it "creates a new Following" do
-         expect {
+       # it "creates a new Following" do
+       #   expect {
            
-           post :create, {:following => FactoryGirl.build(:following)}
-         }.to change(Following, :count).by(1)
-       end
+       #     post :create, {:following => FactoryGirl.build(:following)}
+       #   }.to change(Following, :count).by(1)
+       # end
 
   #     it "assigns a newly created following as @following" do
   #       post :create, {:following => valid_attributes}

@@ -3,14 +3,6 @@ require 'spec_helper'
 describe ProfilesController do
 login_user
 
-  describe "GET show" do
-    it "assigns the requested profile as @profile" do
-      profile = FactoryGirl.create(:profile)
-      get :show, {:user_name => profile.user_name}
-      assigns(:profile).should eq(profile)
-    end
-  end
-
   # describe "GET edit" do
   #   it "assigns the requested profile as @profile" do
   #     user = FactoryGirl.create(:user, email: "ase33@sefije.com")
