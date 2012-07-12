@@ -1,4 +1,7 @@
 class Event < ActiveRecord::Base
+  #Functionality for friendly IDs
+    extend FriendlyId
+    friendly_id :slug
 
 	#Associations
 	  belongs_to :user, :inverse_of => :events
@@ -9,34 +12,33 @@ class Event < ActiveRecord::Base
     has_many :followings, :as => :followable
     has_many :followers, :through => :followings, :source => :user
 
-
     #has_many :followers, :class_name => "Following", as: :followable
     #has_many :followings, as: :followable
 
   #Attributes
     attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
-  	 :title, :user_id, :custom_url, :longitude,:latitude, :created_at, :updated_at
+  	 :title, :user_id, :slug, :longitude,:latitude, :created_at, :updated_at
 
   #Callbacks
-    before_save { |event| event.custom_url = event.custom_url.downcase }
+    before_save { |event| event.slug = event.slug.downcase }
     after_validation :geocoding
 
   #Scopes
   	scope :default_order, order(:raise_end)
 
   #Validation
-  	validates :custom_url, :presence => true
-  	validates :custom_url, :format => { :with => /^\w+$/i,
+  	validates :slug, :presence => true
+  	validates :slug, :format => { :with => /^\w+$/i,
     	:message => "only letters and numbers allowed" }
-  	validates :custom_url, :exclusion => {:in => %w(contact dashboard profile 
+  	validates :slug, :exclusion => {:in => %w(contact dashboard profile 
   			profiles ass dick cunt prick shit fuck connection contacts connections 
   			home edit new create update post push), :message => "Please choose 
 				a different user name"} 
-  	validates :custom_url, :length => {:maximum => 50, 
+  	validates :slug, :length => {:maximum => 50, 
   			:too_long => "%{count} characters is the maximum allowed"}
-  	validates :custom_url, :length => {:minimum => 4, 
+  	validates :slug, :length => {:minimum => 4, 
   			:too_short => "%{count} characters is the manimum allowed"}
-  	validates :custom_url, :uniqueness => { :case_sensitive => false }
+  	validates :slug, :uniqueness => { :case_sensitive => false }
 		validates :minimum_raise, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => -1, :less_than => 250}
 
     validates :description, :presence => true
@@ -44,7 +46,7 @@ class Event < ActiveRecord::Base
     validates :event_time, :presence => true
     validates :location, :presence => true
     validates :title, :presence => true
-    validates :custom_url, :presence => true
+    validates :slug, :presence => true
     validates :user_id, :presence => true
 
   #Other

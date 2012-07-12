@@ -27,13 +27,8 @@ Profile Image<br/>
 
 <p>
   <b>User Name:</b>
-  <%= profile.user_name %>
+  <%= current_user.slug %>
 </p>
-<p>
-  <b>Custom URL:</b>
-  <%= request.protocol + request.host_with_port + '/' + profile.user_name %>
-</p>
-
 
 <p>
   <b>About:</b>
@@ -53,7 +48,7 @@ Profile Image<br/>
 
 <% events.each do |event| %>
   <tr>
-    <td><%= link_to event.title, '/event/' + event.custom_url %></td>
+    <td><%= link_to event.title, event %></td>
     <td><%= event.event_time %></td>
     <td><%= event.location %></td>
     <td><%= event.raise_end %></td>

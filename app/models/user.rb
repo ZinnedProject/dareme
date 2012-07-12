@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  #Functionality for friendly IDs
+    extend FriendlyId
+    friendly_id :slug
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -26,15 +30,27 @@ class User < ActiveRecord::Base
     has_many :followers, :through => :followings, :source => :user
 
   #Attributes
-  	attr_accessible :email, :password, :password_confirmation, :remember_me
+  	attr_accessible :email, :password, :password_confirmation, :remember_me, :slug
 
   #Callbacks
     after_create :create_profile
+    after_save { |user| user.slug = 'newuser' + (id+12000).to_s }
+
+  #Validations
+    validates :slug, :presence => true
+    validates :slug, :format => { :with => /^\w+$/i,
+      :message => "only letters and numbers allowed" }
+    validates :slug, :exclusion => {:in => %w(contact dashboard profile 
+        profiles ass dick cunt prick shit fuck connection contacts connections 
+        home edit new create update post push), :message => "Please choose 
+        a different user name"} 
+    validates :slug, :length => {:maximum => 50, :too_long => "%{count} characters is the maximum allowed"}
+    validates :slug, :length => {:minimum => 4, :too_short => "%{count} characters is the manimum allowed"}
+    validates :slug, :uniqueness => { :case_sensitive => false }
 
   def create_profile  #When a user is created make sure a profile is created for them as well
     profile = Profile.new
     profile.user_id = id
-    profile.user_name = "newuser" + (id+12000).to_s()
     profile.save(validate: false)
   end
 

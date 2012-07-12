@@ -12,8 +12,8 @@
 <br />
 <ul class="hmenu">
 	<% if user_signed_in? %>
-  <li> <%= link_to 'Show Dares', '/events'%> </li>  
-  <li> <%= link_to 'Profile', '/profiles/' + current_user.profile.user_name %></li> 
+  <li> <%= link_to 'Show Dares', events_path%> </li>  
+  <li> <%= link_to 'Profile', current_user %></li> 
   <%= render 'devise/menu/registration_items' %>
   <%= render 'devise/menu/login_items' %>
   <% end %>

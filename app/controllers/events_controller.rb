@@ -1,8 +1,5 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-
-  # GET /events
-  # GET /events.json
   def index
     @events = Event.default_order
 
@@ -12,12 +9,9 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
-#    Rails.logger.info("PARAMS: #{params.inspect}")   
-    @event = Event.find_by_custom_url(params[:custom_url].downcase)
-    #@comments = @event.comments.paginate(:page => params[:page], :per_page => 10)
+    @event = Event.find(params[:id])
+  
     @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
@@ -29,9 +23,6 @@ class EventsController < ApplicationController
       format.json { render json: @event }
     end
   end
-
-  # GET /events/new
-  # GET /events/new.json
   def new
     @event = Event.new
 
@@ -41,21 +32,17 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
-
-  # POST /events
-  # POST /events.json
   def create
     @event = Event.new(params[:event])
     @event.user_id = current_user.id
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to '/event/'+@event.custom_url, notice: 'Event was successfully created.' }
-        format.json { render json: '/event/'+@event.custom_url, status: :created, location: @event }
+        format.html { redirect_to '/event/'+@event.slug, notice: 'Event was successfully created.' }
+        format.json { render json: '/event/'+@event.slug, status: :created, location: @event }
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -63,14 +50,12 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to '/event/'+@event.custom_url, notice: 'Event was successfully updated.' }
+        format.html { redirect_to '/event/'+@event.slug, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

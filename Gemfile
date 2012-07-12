@@ -22,6 +22,8 @@ gem 'execjs'
 	gem "rmagick"		#sudo apt-get install libmagickwand-dev
 	gem "mini_magick"	
 
+#Simply URL helper
+	gem 'friendly_id'
 #Background Jobs
 #	gem "queue_classic", "2.0.0"
 

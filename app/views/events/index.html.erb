@@ -15,8 +15,8 @@
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= link_to event.user.profile.user_name, '/profile/'+ event.user.profile.user_name %></td>
-    <td><%= link_to event.title, '/event/' + event.custom_url %></td>
+    <td><%= link_to event.user.slug, event.user %><%# link_to event.user.profile.slug, '/profile/'+ event.user.profile.slug %></td>
+    <td><%= link_to event.title, event %></td>
 
     <td><%= event.event_time %></td>
     <td><%= event.location %></td>

@@ -17,8 +17,8 @@ describe ProfilesController do
 
     it "routes to #show" do
       @user = FactoryGirl.create(:user)
-      @profile = FactoryGirl.create(:profile, user_name: "fish", user_id: @user.id)
-      get("/profiles/fish").should route_to("profiles#show", :id => "fish")
+      @profile = FactoryGirl.create(:profile, slug: "fish", user_id: @user.id)
+      get("/profile/fish").should route_to("profiles#show", :id => "fish")
     end
 
   end

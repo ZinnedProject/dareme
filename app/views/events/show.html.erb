@@ -7,12 +7,7 @@
 
 <p>
   <b>User Name:</b>
-  <%= link_to @event.user.profile.user_name, '/profile/' + @event.user.profile.user_name %>
-</p>
-
-<p>
-  <b>Custom URL:</b>
-  <%= request.protocol + request.host_with_port + '/' + @event.custom_url %>
+  <%= link_to @event.user.slug, @event.user %>
 </p>
 
 

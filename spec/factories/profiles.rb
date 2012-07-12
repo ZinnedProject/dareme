@@ -5,7 +5,7 @@ FactoryGirl.define do
     first_name "MyString"
     last_name "MyString"
     user_id 1
-    user_name "iamawesome"
+    slug "iamawesome"
     about "MyString"
   end
 end

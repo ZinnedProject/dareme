@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712040740) do
+ActiveRecord::Schema.define(:version => 20120712151615) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120712040740) do
     t.string   "location"
     t.decimal  "minimum_raise"
     t.text     "description"
-    t.string   "custom_url"
+    t.string   "slug"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.datetime "event_time"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20120712040740) do
     t.float    "longitude"
   end
 
-  add_index "events", ["custom_url"], :name => "index_events_on_custom_url"
+  add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "followings", :force => true do |t|
@@ -78,11 +78,9 @@ ActiveRecord::Schema.define(:version => 20120712040740) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image"
-    t.string   "user_name"
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
-  add_index "profiles", ["user_name"], :name => "index_profiles_on_user_name"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -110,9 +108,11 @@ ActiveRecord::Schema.define(:version => 20120712040740) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
 end

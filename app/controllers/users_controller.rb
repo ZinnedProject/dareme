@@ -4,8 +4,9 @@ class UsersController < Devise::SessionsController
 
   def show
 
-    @user = get_profile(params).user
-
+    #@user = get_profile(params).user
+    @user = User.find(params[:id])
+    @profile = @user.profile
     @events = Event.find_all_by_user_id(@user.id)
     session[:followable_id] = @user.id
     session[:followable_type] = @user.class  

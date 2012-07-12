@@ -33,7 +33,7 @@ describe EventsController do
 
     it "routes to #show" do
       @user = FactoryGirl.create(:user)
-      @event = FactoryGirl.create(:event, custom_url: "fish", user_id: @user.id)
+      @event = FactoryGirl.create(:event, slug: "fish", user_id: @user.id)
       get("/events/fish").should route_to("events#show", :id => "fish")
     end
 

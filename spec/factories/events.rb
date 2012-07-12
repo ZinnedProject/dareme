@@ -9,6 +9,6 @@ FactoryGirl.define do
     minimum_raise 9.99
     raise_end "01/01/2012"
     description "MyText"
-    custom_url 'gogogo'
+    slug 'gogogo'
   end
 end

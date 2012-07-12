@@ -18,7 +18,7 @@ describe EventsController do
     
     it "assigns the requested event as @event" do
       event = FactoryGirl.create(:event)
-      get :show, :custom_url => event.custom_url
+      get :show, :slug => event.slug
       assigns(:event).should eq(event)
     end
   end

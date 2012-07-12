@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Event do
 	it "has a valid factoryGirl" do
-		FactoryGirl.create(:event, custom_url: "fefeefefe").should be_valid
+		FactoryGirl.create(:event, slug: "fefeefefe").should be_valid
 	end
 
 	before do
@@ -19,7 +19,7 @@ describe Event do
 		it { should respond_to(:minimum_raise) }
 		it { should respond_to(:title) }
 		it { should respond_to(:user_id) }
-		it { should respond_to(:custom_url) }
+		it { should respond_to(:slug) }
 		it { should respond_to(:longitude) }
 		it { should respond_to(:latitude) }
 		it { should respond_to(:created_at) }
@@ -67,31 +67,31 @@ describe Event do
 		it "should not be valid if title is nil" do
 			@event.should validate_presence_of :title
 		end 
-		it "should not be valid if custom_url is nil" do
-			@event.should validate_presence_of :custom_url
+		it "should not be valid if slug is nil" do
+			@event.should validate_presence_of :slug
 		end 
 				it "should not be valid if user_name has more than letter and numbers" do
-			@event.custom_url = "8*78f8%"
+			@event.slug = "8*78f8%"
 			@event.save.should be_false
 		end 
 		it "should not be valid if user_name has reserved names" do
-			@event.custom_url = "contact"
+			@event.slug = "contact"
 			@event.save.should be_false
 		end 
 		it "should not be valid if user_name is to long" do
-			@event.custom_url = "contact35g57835363338683753535353yusgfuihdhjsfguih4t879gryugdhj"
+			@event.slug = "contact35g57835363338683753535353yusgfuihdhjsfguih4t879gryugdhj"
 			@event.save.should be_false
 		end 
 		it "should not be valid if user_name is not unique" do
-			@event.custom_url = "coji"
+			@event.slug = "coji"
 			@event.save
 			@event2 = @event
 			@event2.id = nil
-			@event2.custom_url = 'coJi'
+			@event2.slug = 'coJi'
 			@event2.save.should be_false
 		end 
 		it "should not be valid if user_name is to short" do
-			@event.custom_url = "con"
+			@event.slug = "con"
 			@event.save.should be_false
 		end 
 
@@ -99,9 +99,9 @@ describe Event do
 
 	describe "Callbacks" do
 		it "should downcase the user_name when storing" do
-  		@event.custom_url = "DiddyDog"
+  		@event.slug = "DiddyDog"
   		@event.save
-  		@event.custom_url.downcase.should be_true
+  		@event.slug.downcase.should be_true
 		end
 	end
 

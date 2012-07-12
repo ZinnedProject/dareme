@@ -12,9 +12,9 @@ Dareme::Application.routes.draw do
     resources :comments, :only => [:destroy]
 
   #Events
-    resources :events do
-      resources :comments, :only => [:destroy, :create]
-    end
+    resources :events 
+#      resources :comments, :only => [:destroy, :create]
+ 
 
   #Default
     root :to => "events#index"
@@ -25,14 +25,16 @@ Dareme::Application.routes.draw do
   #Devise / Login 
     devise_for :users
     resources :comments, :only => [:destroy, :create]
+
   #Go to special names
     devise_scope :user do 
-      match '/profile/:user_name' => 'users#show' 
-      match '/profile/:user_name/follow' => 'followings#create', as: 'create_following'
+      resources :users, only: [:show]
+      #match '/user/:id' => 'users#show', as: 'user'
+      match '/users/:id/follow' => 'followings#create', as: 'create_following'
     end
     
 
-    match '/event/:custom_url' => 'events#show'
+    #match '/event/:slug' => 'events#show'
 
 
   # The priority is based upon order of creation:
