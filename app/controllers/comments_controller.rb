@@ -2,10 +2,10 @@ class CommentsController < ApplicationController
 
   def create
 
-    if session[:followable_type].to_s == 'User'
-      @commentable = User.find(session[:followable_id].to_i)
-    elsif session[:followable_type].to_s == 'Event'
-      @commentable = Event.find(session[:followable_id].to_i)
+    if session[:commentable_type].to_s == 'User'
+      @commentable = User.find(session[:commentable_id].to_i)
+    elsif session[:commentable_type].to_s == 'Event'
+      @commentable = Event.find(session[:commentable_id].to_i)
     end
 
     @comment = @commentable.comments.new(params[:comment])

@@ -7,9 +7,6 @@ class Profile < ActiveRecord::Base
       :updated_at, :created_at, :image_cache, :remove_image
     mount_uploader :image, ImageUploader
 
-  #Callbacks
-    before_save { |profile| profile.slug = profile.slug.downcase }
-
   #Validation
     validates :first_name, :presence => true
     validates :last_name, :presence => true

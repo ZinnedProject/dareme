@@ -3,6 +3,12 @@
 <% if current_user.id == @event.user_id then %>
   <%= link_to 'Edit', edit_event_path(@event) %> | <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+<% if @following.nil? %>
+  <%= link_to 'Follow Me!', followings_path, method: :post %> 
+<% else %>
+  <%= link_to 'Stop Following Me!', @following, method: :delete, data: { confirm: 'Are you sure?' } %> 
+<% end %>
+
 <br />
 
 <p>
@@ -45,4 +51,6 @@
 <br />
 <h1>Comments </h1>
 <%= render "/comments/show_comments", :comments => @comments %>
-<%= render '/comments/form' %>
+<% if current_user.followed_events.exists?(@event) then %>
+  <%= render '/comments/form' %>
+<% end %>

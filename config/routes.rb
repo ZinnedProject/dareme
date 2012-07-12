@@ -1,41 +1,34 @@
 Dareme::Application.routes.draw do
 
-
-
-  #resources :followings, only: [:create, :destroy]
-
-
   #Functinoality  
     mount Ckeditor::Engine => '/ckeditor'
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
-    resources :comments, :only => [:destroy]
-
   #Events
     resources :events 
-#      resources :comments, :only => [:destroy, :create]
- 
+    match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
 
   #Default
     root :to => "events#index"
 
   #Profile Resources
-     resources :profiles, :only => [:update, :edit]
-        
-  #Devise / Login 
-    devise_for :users
+    resources :profiles, :only => [:update, :edit] 
+          
+  #Comments
     resources :comments, :only => [:destroy, :create]
 
-  #Go to special names
+  #Followings
+    resources :followings, only: [:destroy, :create]
+  
+  #Devise / Login 
+    devise_for :users    
     devise_scope :user do 
       resources :users, only: [:show]
       #match '/user/:id' => 'users#show', as: 'user'
-      match '/users/:id/follow' => 'followings#create', as: 'create_following'
+     # match '/users/:id/follow' => 'followings#create', as: 'create_following', via: :post
+#      match '/users/:user_id/follow/:id' => 'followings#destroy', as: 'destroy_following', via: :delete
     end
     
-
-    #match '/event/:slug' => 'events#show'
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

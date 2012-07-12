@@ -11,13 +11,15 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-  
+    @following = Following.find_by_followable_type_and_followable_id_and_user_id("Event",@event.id,current_user.id)
     @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
+    session[:commentable_id] = @event.id
+    session[:commentable_type] = @event.class  
     session[:followable_id] = @event.id
-    session[:followable_type] = @event.class  
-    
+    session[:followable_type] = @event.class
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -41,8 +43,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to '/event/'+@event.slug, notice: 'Event was successfully created.' }
-        format.json { render json: '/event/'+@event.slug, status: :created, location: @event }
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -55,7 +57,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to '/event/'+@event.slug, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

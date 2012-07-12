@@ -4,7 +4,11 @@
 <% if current_user.id == profile.user_id then %>
   <%= link_to 'Edit', edit_profile_path(profile) %> 
 <% else %>
-  <%= link_to 'Follow Me!', create_following_path() %> 
+  <% if @following.nil? %>
+    <%= link_to 'Follow Me!', followings_path, method: :post %> 
+  <% else %>
+    <%= link_to 'Stop Following Me!', @following, method: :delete, data: { confirm: 'Are you sure?' } %> 
+  <% end %>
 <% end %>
 <br />
 Profile Image<br/>
@@ -60,4 +64,6 @@ Profile Image<br/>
 
 <h1>Comments </h1>
 <%= render "/comments/show_comments", :comments => comments %>
-<%= render '/comments/form' %>
+<% if current_user.followed_users.exists?(@user) then %>
+  <%= render '/comments/form' %>
+<% end %>

@@ -6,8 +6,12 @@ class Following < ActiveRecord::Base
 	  #belongs_to :following, class_name: 'Followable', polymorphic: true
 
   #Attributes
-  	attr_accessible :followable_id, :followable_type, :user_id, :followable
-  
+  	attr_accessible :followable_id, :followable_type, :user_id, :followable, :user_id,
+      :created_at, :updated_at, :id
+
+  #Callbacks
+    validates_uniqueness_of :user_id, :scope => [:followable_id,:followable_type]
+
   #Validates
     validates :user_id, :presence => true
     validates :followable_type, :presence => true

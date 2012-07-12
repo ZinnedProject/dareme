@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712151615) do
+ActiveRecord::Schema.define(:version => 20120712190216) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120712151615) do
 
   add_index "followings", ["followable_id"], :name => "index_followings_on_followable_id"
   add_index "followings", ["followable_type"], :name => "index_followings_on_followable_type"
+  add_index "followings", ["user_id", "followable_id", "followable_type"], :name => "index_followings_on_all", :unique => true
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
