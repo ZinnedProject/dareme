@@ -1,7 +1,13 @@
 class CommentsController < ApplicationController
-  before_filter :load_commentable
 
   def create
+
+    if session[:followable_type].to_s == 'User'
+      @commentable = User.find(session[:followable_id].to_i)
+    elsif session[:followable_type].to_s == 'Event'
+      @commentable = Event.find(session[:followable_id].to_i)
+    end
+
     @comment = @commentable.comments.new(params[:comment])
     @comment.user_id = current_user.id
     respond_to do |format|
@@ -24,15 +30,6 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-   def load_commentable
-    if params[:profile_id]
-      @commentable = Profile.find(params[:profile_id])
-    elsif params[:event_id]
-      @commentable = Event.find(params[:event_id])
-    end
-
-   end
 
 
 

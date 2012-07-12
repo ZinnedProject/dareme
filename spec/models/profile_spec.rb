@@ -32,10 +32,6 @@ describe Profile do
   	it "Should respond to a user" do
   		@profile.user.should eq(@user)
   	end
-  	it "Should respond to a comment" do   		
-  		@comment = FactoryGirl.create(:comment, commentable: @profile)
-  		@profile.comments.first.should eq(@comment)
-  	end
 	end
 
 	describe "Validations" do

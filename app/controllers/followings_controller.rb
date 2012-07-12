@@ -10,7 +10,6 @@ include ApplicationHelper
     end
   end
 
-
   def create
     @following = Following.new(followable:get_profile(params).user, user_id:current_user.id )  
 

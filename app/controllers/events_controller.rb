@@ -21,7 +21,8 @@ class EventsController < ApplicationController
     @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
-
+    session[:followable_id] = @event.id
+    session[:followable_type] = @event.class  
     
     respond_to do |format|
       format.html # show.html.erb

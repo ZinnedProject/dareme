@@ -7,6 +7,7 @@ describe FollowingsController do
      describe "with valid params" do
        it "creates a new Following" do
          expect {
+           @
            post :create, {:following => FactoryGirl.build(:following)}
          }.to change(Following, :count).by(1)
        end

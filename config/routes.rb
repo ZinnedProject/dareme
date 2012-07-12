@@ -20,16 +20,17 @@ Dareme::Application.routes.draw do
     root :to => "events#index"
 
   #Profile Resources
-     resources :profiles, :only => [:show, :update, :edit] do
-        resources :comments, :only => [:destroy, :create]
-     end
-
+     resources :profiles, :only => [:update, :edit]
+        
   #Devise / Login 
     devise_for :users
-
+    resources :comments, :only => [:destroy, :create]
   #Go to special names
-    match '/profile/:user_name' => 'profiles#show' 
-    match '/profile/:user_name/follow' => 'followings#create', as: 'create_following'
+    devise_scope :user do 
+      match '/profile/:user_name' => 'users#show' 
+      match '/profile/:user_name/follow' => 'followings#create', as: 'create_following'
+    end
+    
 
     match '/event/:custom_url' => 'events#show'
 

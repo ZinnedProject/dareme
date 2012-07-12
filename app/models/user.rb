@@ -9,7 +9,12 @@ class User < ActiveRecord::Base
 		has_one :profile, :inverse_of => :user, :dependent => :destroy
     has_many :events, :inverse_of => :user, :dependent => :destroy
 
-    has_many :comments, :inverse_of => :user, :dependent => :destroy
+    #user.commentsUserMade
+    has_many :comments_made, class_name: 'Comment', foreign_key: "user_id", inverse_of: :user
+    
+    #user.commentsReceived
+    has_many :comments, :as => :commentable
+    has_many :comments_senders, :through => :comments, :source => :user
 
     #user.follows
     has_many :follows, class_name: 'Following', foreign_key: "user_id", inverse_of: :user

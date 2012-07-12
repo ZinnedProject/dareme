@@ -1,25 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  include ApplicationHelper
-
-  def show
-
-    @profile = get_profile(params)
-
-    @events = Event.find_all_by_user_id(@profile.user_id)
-    #@comments = current_user.profile.comments.paginate(:page => params[:page], :per_page => 10)
-    @comments = @profile.comments.page(params[:page]).per(10)
-
-
-    @comment = Comment.new
-    @commentable = @profile
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @profile }
-    end
-  end
-
+  
   def edit
     @profile = current_user.profile
   end

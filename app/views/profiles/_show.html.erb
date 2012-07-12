@@ -1,43 +1,43 @@
 <p id="notice"><%= notice %></p>
 <h1>Profile</h1>
 
-<% if current_user.id == @profile.user_id then %>
-  <%= link_to 'Edit', edit_profile_path(@profile) %> 
+<% if current_user.id == profile.user_id then %>
+  <%= link_to 'Edit', edit_profile_path(profile) %> 
 <% else %>
   <%= link_to 'Follow Me!', create_following_path() %> 
 <% end %>
 <br />
 Profile Image<br/>
-<%= image_tag @profile.image_url(:thumb_200) %>
+<%= image_tag profile.image_url(:thumb_200) %>
 <br />
 <p>
   <b>First name:</b>
-  <%= @profile.first_name %>
+  <%= profile.first_name %>
 </p>
 
 <p>
   <b>Last name:</b>
-  <%= @profile.last_name %>
+  <%= profile.last_name %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @profile.user_id %>
+  <%= profile.user_id %>
 </p>
 
 <p>
   <b>User Name:</b>
-  <%= @profile.user_name %>
+  <%= profile.user_name %>
 </p>
 <p>
   <b>Custom URL:</b>
-  <%= request.protocol + request.host_with_port + '/' + @profile.user_name %>
+  <%= request.protocol + request.host_with_port + '/' + profile.user_name %>
 </p>
 
 
 <p>
   <b>About:</b>
-  <%= @profile.about.html_safe if not @profile.about.nil? %>
+  <%= profile.about.html_safe if not profile.about.nil? %>
 </p>
 <br />
 
@@ -51,7 +51,7 @@ Profile Image<br/>
     <th>Bidding End</th>
   </tr>
 
-<% @events.each do |event| %>
+<% events.each do |event| %>
   <tr>
     <td><%= link_to event.title, '/event/' + event.custom_url %></td>
     <td><%= event.event_time %></td>
@@ -64,5 +64,5 @@ Profile Image<br/>
 <br />
 
 <h1>Comments </h1>
-<%= render "/comments/show_comments", :comments => @comments %>
+<%= render "/comments/show_comments", :comments => comments %>
 <%= render '/comments/form' %>

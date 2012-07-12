@@ -35,8 +35,8 @@ describe Comment do
   		@comment.commentable.should eq(@event)
   	end
   	it "Should respond to a profile" do
-  		@comment.commentable = @profile
-  		@comment.commentable.should eq(@profile)
+  		@comment.commentable = @user
+  		@comment.commentable.should eq(@user)
   	end
 	end
 

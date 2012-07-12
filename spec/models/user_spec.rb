@@ -43,10 +43,22 @@ describe User do
   		@event = FactoryGirl.create(:event, user_id: @user.id)
   		@user.events.first.should eq(@event)
   	end
-  	it "Should respond to a comment I've left" do   		
-  		@comment = FactoryGirl.create(:comment, user_id: @user.id)
-  		@user.comments.first.should eq(@comment)
+  	it "Should respond to a comments_made" do   		
+  		@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+  		@comment = FactoryGirl.create(:comment, user_id: @user.id, commentable: @user2)
+   		@user.comments_made.first.should eq(@comment)
   	end
+  	it "Should respond to a comments" do   		
+  		@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+  		@comment = FactoryGirl.create(:comment, user_id: @user.id, commentable: @user2)
+   		@user2.comments.first.should eq(@comment)
+  	end
+  	it "Should respond to a comments_senders" do   		
+  		@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
+  		@comment = FactoryGirl.create(:comment, user_id: @user.id, commentable: @user2)
+   		@user2.comments_senders.first.should eq(@user)
+  	end
+
   	it "Should respond to followings (show a list of people who I am following" do
 			@user2 = FactoryGirl.create(:user, email:"asdfdf@aseij.com")
 			@follower = FactoryGirl.create(:following, user_id: @user.id, followable:@user2)

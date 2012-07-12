@@ -4,9 +4,9 @@ class Profile < ActiveRecord::Base
 
   #Attributes
   	attr_accessible :about, :first_name, :last_name, :user_id, :user_name, :image, :remote_image_url,
-      :updated_at, :created_at
+      :updated_at, :created_at, :image_cache, :remove_image
     mount_uploader :image, ImageUploader
-    has_many :comments, :as => :commentable
+    #has_many :comments, :as => :commentable
 
   #Callbacks
     before_save { |profile| profile.user_name = profile.user_name.downcase }
