@@ -38,6 +38,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.8)
     arel (3.0.2)
+    authbuttons-rails (0.1.2)
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.4.0)
@@ -103,6 +104,7 @@ GEM
     guard-rspec (1.1.0)
       guard (>= 1.1)
     haml (3.1.6)
+    hashie (1.2.0)
     hike (1.2.1)
     hpricot (0.8.6)
     httpauth (0.1)
@@ -161,6 +163,14 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
+    omniauth (1.1.0)
+      hashie (~> 1.2)
+      rack
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-youtube (1.0)
+      omniauth-oauth (~> 1.0)
     orm_adapter (0.3.0)
     pg (0.13.2)
     polyglot (0.3.3)
@@ -281,6 +291,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authbuttons-rails
   capybara
   carrierwave
   chosen-rails
@@ -299,6 +310,7 @@ DEPENDENCIES
   jquery-rails
   libnotify (= 0.5.9)
   mini_magick
+  omniauth-youtube
   pg (~> 0.13.2)
   quiet_assets
   rails (= 3.2.6)

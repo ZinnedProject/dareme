@@ -24,6 +24,10 @@ gem 'execjs'
 
 #Simply URL helper
 	gem 'friendly_id'
+
+#Authentications
+	gem 'omniauth-youtube'
+	gem 'authbuttons-rails'
 #Background Jobs
 #	gem "queue_classic", "2.0.0"
 

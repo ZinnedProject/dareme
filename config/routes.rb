@@ -1,5 +1,7 @@
 Dareme::Application.routes.draw do
 
+  resources :authentications
+
   #Functinoality  
     mount Ckeditor::Engine => '/ckeditor'
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -24,10 +26,11 @@ Dareme::Application.routes.draw do
     devise_for :users    
     devise_scope :user do 
       resources :users, only: [:show]
-      #match '/user/:id' => 'users#show', as: 'user'
-     # match '/users/:id/follow' => 'followings#create', as: 'create_following', via: :post
-#      match '/users/:user_id/follow/:id' => 'followings#destroy', as: 'destroy_following', via: :delete
     end
+
+  #Authentications
+  match '/auth/:provider/callback' => 'authentications#create'
+
     
 
   # The priority is based upon order of creation:

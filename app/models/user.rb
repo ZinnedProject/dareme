@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
     has_many :followings, :as => :followable
     has_many :followers, :through => :followings, :source => :user
 
+    #user.authentications
+    has_many :authentications
+
   #Attributes
   	attr_accessible :email, :password, :password_confirmation, :remember_me, :slug
 
