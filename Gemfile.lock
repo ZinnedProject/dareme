@@ -7,6 +7,22 @@ GIT
       spork (>= 0.8.4)
 
 GIT
+  remote: git://github.com/intridea/omniauth-oauth2.git
+  revision: e82ed5d2321ae27b6d2ff88e47244f32364bde3e
+  specs:
+    omniauth-oauth2 (1.1.0)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
+
+GIT
+  remote: git://github.com/intridea/omniauth.git
+  revision: f611746401cbc07bfb59c83f248ff00b6048233e
+  specs:
+    omniauth (1.1.0)
+      hashie (~> 1.2)
+      rack
+
+GIT
   remote: git://github.com/jamiew/omniauth-youtube.git
   revision: 703326e20418e2d00ea4e927861a3cddb66be36b
   specs:
@@ -170,15 +186,6 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    omniauth (1.1.0)
-      hashie (~> 1.2)
-      rack
-    omniauth-google-oauth2 (0.1.10)
-      omniauth (~> 1.0)
-      omniauth-oauth2
-    omniauth-oauth2 (1.1.0)
-      oauth2 (~> 0.8.0)
-      omniauth (~> 1.0)
     orm_adapter (0.3.0)
     pg (0.13.2)
     polyglot (0.3.3)
@@ -318,7 +325,8 @@ DEPENDENCIES
   jquery-rails
   libnotify (= 0.5.9)
   mini_magick
-  omniauth-google-oauth2
+  omniauth!
+  omniauth-oauth2!
   omniauth-youtube!
   pg (~> 0.13.2)
   quiet_assets
