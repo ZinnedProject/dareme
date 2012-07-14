@@ -25,9 +25,11 @@ gem 'execjs'
 #Simply URL helper
 	gem 'friendly_id'
 
+
 #Authentications
-	gem 'omniauth-youtube'
+	gem 'omniauth-youtube', :git => 'git://github.com/jamiew/omniauth-youtube.git'
 	gem 'authbuttons-rails'
+	gem 'omniauth-google-oauth2'		#https://github.com/intridea/omniauth/wiki'
 #Background Jobs
 #	gem "queue_classic", "2.0.0"
 

@@ -19,6 +19,10 @@
   <p><strong>Sign in through one of these services:</strong></p>
 <% end %>
 
+<a href="/auth/youtube" class="auth_provider">
+  <%= image_tag "youtube_64.png", :size => "64x64", :alt => "YouTube" %>
+  YoutTube
+</a>
 <a href="/auth/twitter" class="auth_provider">
   <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
   Twitter
@@ -27,7 +31,7 @@
   <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
   Facebook
 </a>
-<a href="/auth/google_apps" class="auth_provider">
+<a href="/auth/google_oauth2" class="auth_provider">
   <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
   Google
 </a>

@@ -14,6 +14,7 @@
 	<% if user_signed_in? %>
   <li> <%= link_to 'Show Dares', events_path%> </li>  
   <li> <%= link_to 'Profile', current_user %></li> 
+  <li> <%= link_to 'Authentications', authentications_url %></li> 
   <%= render 'devise/menu/registration_items' %>
   <%= render 'devise/menu/login_items' %>
   <% end %>

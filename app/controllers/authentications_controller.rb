@@ -11,16 +11,12 @@ class AuthenticationsController < ApplicationController
   end
 
 
-  # GET /authentications/1/edit
-  def edit
-    @authentication = Authentication.find(params[:id])
-  end
-
   # POST /authentications
   # POST /authentications.json
   def create
-    auth = request.env["omniauth.auth"]
-    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
+    omniauth = request.env["omniauth.auth"]
+    puts omniauth.to_yaml
+    current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     flash[:notice] = "Authentication successful."
     redirect_to authentications_url    
   end
@@ -37,4 +33,11 @@ class AuthenticationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def oauth_failure
+    puts params.inspect
+    flash[:notice] = "There was an error authenticating with your account"
+    redirect_to authentications_url
+  end
+
 end
