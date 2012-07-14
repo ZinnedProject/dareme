@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+<% if @request_video %>
+  <%= link_to "Edit Request Video", new_video_path %>
+<% else %>
+  <%= link_to "Edit Request Video", edit_video_path(@request_video.id) %>
+<% end %>
+
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>

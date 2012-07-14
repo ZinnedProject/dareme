@@ -15,8 +15,13 @@ class AuthenticationsController < ApplicationController
   # POST /authentications.json
   def create
     omniauth = request.env["omniauth.auth"]
-    puts omniauth.to_yaml
-    current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    #puts omniauth.to_yaml
+    
+    a = current_user.authentications.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    if a.nil?
+      current_user.authentications.create(provider: omniauth.provider, uid: omniauth.uid, nickname: omniauth.info.nickname, token: omniauth.credentials.token)
+    end
+
     flash[:notice] = "Authentication successful."
     redirect_to authentications_url    
   end

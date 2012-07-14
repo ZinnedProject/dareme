@@ -15,10 +15,16 @@ class EventsController < ApplicationController
     @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
+    
+    #Session variables for polymorphics
     session[:commentable_id] = @event.id
     session[:commentable_type] = @event.class  
     session[:followable_id] = @event.id
     session[:followable_type] = @event.class
+
+    #Videos
+    @request_video = @event.videos.request_video
+    @proof_video = @event.videos.proof_video
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,6 +42,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+        #Videos
+    @request_video = @event.videos.request_video
+    @proof_video = @event.videos.proof_video
+
+    puts @request_video.to_yaml
+    puts @request_video.class
   end
   def create
     @event = Event.new(params[:event])
