@@ -11,12 +11,7 @@
     </div>
   <% end %>
 
-<% if @request_video %>
-  <%= link_to "Edit Request Video", new_video_path %>
-<% else %>
-  <%= link_to "Edit Request Video", edit_video_path(@request_video.id) %>
-<% end %>
-
+<br />
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -47,6 +42,40 @@
     <%= f.cktext_area :description, :input_html => { 
           :cols => 10, :rows => 30}  %>
   </div>
+
+<h3>Request Video</h3>
+  <div class="field">
+    <%= f.label :rv_title, "Title" %><br />
+    <%= f.text_field :rv_title %>
+  </div>
+  <div class="field">
+    <%= f.label :rv_description, "Description" %><br />
+    <%= f.text_field :rv_description %>
+  </div>
+  <div class="field">
+    <%= f.label :rv_keywords, "Keywords" %><br />
+    <%= f.text_field :rv_keywords %>
+  </div>
+<br/>
+<h3>Proof Video</h3>
+
+  <div class="field">
+    <%= f.label :rv_title, "Title" %><br />
+    <%= f.text_field :rv_title %>
+  </div>
+  <div class="field">
+    <%= f.label :rv_description, "Description" %><br />
+    <%= f.text_field :rv_description %>
+  </div>
+  <div class="field">
+    <%= f.label :rv_keywords, "Keywords" %><br />
+    <%= f.text_field :rv_keywords %>
+  </div>
+<br />
+<br />
+
+
+
 
   <div class="actions">
     <%= f.submit %>

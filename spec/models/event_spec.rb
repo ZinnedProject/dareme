@@ -24,6 +24,18 @@ describe Event do
 		it { should respond_to(:latitude) }
 		it { should respond_to(:created_at) }
 		it { should respond_to(:updated_at) }
+
+		it { should respond_to(:rv_title) }
+		it { should respond_to(:rv_is_complete) }
+		it { should respond_to(:rv_description) }
+		it { should respond_to(:rv_keywords) }
+		it { should respond_to(:rv_yt_video_id) }
+		it { should respond_to(:pv_title) }
+		it { should respond_to(:pv_is_complete) }
+		it { should respond_to(:pv_description) }		
+		it { should respond_to(:pv_keywords) }
+		it { should respond_to(:pv_yt_video_id) }
+
 	end
 
 	describe "Associations" do

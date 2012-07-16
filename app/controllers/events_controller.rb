@@ -22,33 +22,54 @@ class EventsController < ApplicationController
     session[:followable_id] = @event.id
     session[:followable_type] = @event.class
 
-    #Videos
-    @request_video = @event.videos.request_video
-    @proof_video = @event.videos.proof_video
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
     end
   end
   def new
-    @event = Event.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @event }
-    end
+    if not current_user.authentications.youtube.exists? then
+      redirect_to authentications_path, notice: 'Please authenticate with Youtube before creating an event!' 
+    else
+      @event = Event.new
+    end    
   end
 
   def edit
     @event = Event.find(params[:id])
-        #Videos
-    @request_video = @event.videos.request_video
-    @proof_video = @event.videos.proof_video
+    puts "fesdfasdfasdfasf879239"
+    auth = current_user.authentications.youtube.first
+    puts auth.to_yaml
+  
+ require 'faraday'
 
-    puts @request_video.to_yaml
-    puts @request_video.class
+ conn = Faraday.new(:url => 'https://accounts.google.com',:ssl => {:verify => false}) do |faraday|
+   faraday.request  :url_encoded
+   faraday.response :logger
+   faraday.adapter  Faraday.default_adapter
   end
+puts conn.to_yaml
+ results = conn.post '/o/oauth2/token', {'code' => auth.token,
+ 'client_id' => ENV['YOUTUBE_KEY'],
+ 'client_secret' => ENV['YOUTUBE_SECRET'],
+ 'redirect_uri' => "http://localhost:3000/auth/youtube/callback",
+ 'grant_type' => 'authorization_code'}
+
+ puts results.body.inspect
+
+    #    @yt_session ||= YouTubeIt::Client.new(:username => YouTubeITConfig.username , :password => YouTubeITConfig.password , :dev_key => YouTubeITConfig.dev_key)    
+    # @client = YouTubeIt::OAuth2Client.new(
+    #   client_access_token: auth.token, 
+    #   client_refresh_token: "refresh_token", 
+    #   client_id: ENV['YOUTUBE_KEY'], 
+    #   client_secret: ENV['YOUTUBE_SECRET'], 
+    #   dev_key: ENV['YOUTUBE_DEV'],
+    #   expires_at: "expiration time")
+
+    puts @client.to_yaml
+
+  end
+
   def create
     @event = Event.new(params[:event])
     @event.user_id = current_user.id
@@ -90,4 +111,10 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upload
+    @upload_info = YouTubeIt::Client.new.upload_token(params, videos_url)
+  end
+
+
 end

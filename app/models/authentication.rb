@@ -4,4 +4,7 @@ class Authentication < ActiveRecord::Base
 
   #Attributes
   	attr_accessible :provider, :uid, :user_id, :nickname, :token
+
+  #Scopes
+  	scope :youtube, where(:provider => 'youtube')
 end

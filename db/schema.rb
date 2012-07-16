@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714114132) do
+ActiveRecord::Schema.define(:version => 20120716193543) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -62,12 +62,22 @@ ActiveRecord::Schema.define(:version => 20120714114132) do
     t.decimal  "minimum_raise"
     t.text     "description"
     t.string   "slug"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.datetime "event_time"
     t.datetime "raise_end"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "rv_title"
+    t.boolean  "rv_is_complete"
+    t.text     "rv_description"
+    t.text     "rv_keywords"
+    t.string   "rv_yt_video_id"
+    t.string   "pv_title"
+    t.boolean  "pv_is_complete"
+    t.text     "pv_description"
+    t.text     "pv_keywords"
+    t.string   "pv_yt_video_id"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
@@ -129,18 +139,5 @@ ActiveRecord::Schema.define(:version => 20120714114132) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
-
-  create_table "videos", :force => true do |t|
-    t.string   "title"
-    t.integer  "event_id"
-    t.string   "event_video_type"
-    t.boolean  "is_complete",      :default => false
-    t.text     "description"
-    t.string   "yt_video_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-  end
-
-  add_index "videos", ["event_id"], :name => "index_videos_on_event_id"
 
 end
