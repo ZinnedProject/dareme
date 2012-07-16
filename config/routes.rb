@@ -8,13 +8,16 @@ Dareme::Application.routes.draw do
   
   #Events
     resources :events 
-    match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
+    #match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
 
   #Default
     root :to => "events#index"
 
   #Profile Resources
     resources :profiles, :only => [:update, :edit] 
+
+  #Videos
+    resources :videos, :only => [:edit, :new]
           
   #Comments
     resources :comments, :only => [:destroy, :create]

@@ -15,7 +15,11 @@ class AuthenticationsController < ApplicationController
   # POST /authentications.json
   def create
     omniauth = request.env["omniauth.auth"]
-    puts omniauth.to_yaml
+
+
+
+    #puts omniauth.to_yaml
+
     
     a = current_user.authentications.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if a.nil?

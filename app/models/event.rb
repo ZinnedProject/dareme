@@ -6,14 +6,13 @@ class Event < ActiveRecord::Base
 	#Associations
 	  belongs_to :user, :inverse_of => :events
     has_many :comments, :as => :commentable
-
     
     #@event.followers
     has_many :followings, :as => :followable
     has_many :followers, :through => :followings, :source => :user
 
-    #has_many :followers, :class_name => "Following", as: :followable
-    #has_many :followings, as: :followable
+    #@event.videos
+    has_many :videos, inverse_of: :event 
 
   #Attributes
     attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
