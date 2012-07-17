@@ -37,37 +37,16 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    puts "fesdfasdfasdfasf879239"
     auth = current_user.authentications.youtube.first
-    puts auth.to_yaml
-  
- require 'faraday'
 
- conn = Faraday.new(:url => 'https://accounts.google.com',:ssl => {:verify => false}) do |faraday|
-   faraday.request  :url_encoded
-   faraday.response :logger
-   faraday.adapter  Faraday.default_adapter
-  end
-puts conn.to_yaml
- results = conn.post '/o/oauth2/token', {'code' => auth.token,
- 'client_id' => ENV['YOUTUBE_KEY'],
- 'client_secret' => ENV['YOUTUBE_SECRET'],
- 'redirect_uri' => "http://localhost:3000/auth/youtube/callback",
- 'grant_type' => 'authorization_code'}
-
- puts results.body.inspect
-
-    #    @yt_session ||= YouTubeIt::Client.new(:username => YouTubeITConfig.username , :password => YouTubeITConfig.password , :dev_key => YouTubeITConfig.dev_key)    
-    # @client = YouTubeIt::OAuth2Client.new(
-    #   client_access_token: auth.token, 
-    #   client_refresh_token: "refresh_token", 
-    #   client_id: ENV['YOUTUBE_KEY'], 
-    #   client_secret: ENV['YOUTUBE_SECRET'], 
-    #   dev_key: ENV['YOUTUBE_DEV'],
-    #   expires_at: "expiration time")
-
-    puts @client.to_yaml
-
+    client = YouTubeIt::OAuth2Client.new(
+    client_access_token: auth.token, 
+    client_id: ENV['YOUTUBE_KEY'], 
+    client_secret: ENV['YOUTUBE_SECRET'], 
+    dev_key: ENV['YOUTUBE_DEV'])
+   
+    a = client.my_videos
+    puts a.to_yaml
   end
 
   def create
