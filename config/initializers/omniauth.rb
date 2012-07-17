@@ -1,7 +1,7 @@
 OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :youtube, ENV['YOUTUBE_KEY'], ENV['YOUTUBE_SECRET'], {:access_type => 'offline', :approval_prompt => ''}
+  provider :youtube, ENV['YOUTUBE_KEY'], ENV['YOUTUBE_SECRET'], {:access_type => 'online', :approval_prompt => ''}
 #  provider :google_oauth2, ENV['YOUTUBE_KEY'], ENV['YOUTUBE_SECRET'], {access_type: 'offline', approval_prompt: '', scope:'http://gdata.youtube.com'}
 #provider :google_oauth2, ENV['YOUTUBE_KEY'], ENV['YOUTUBE_SECRET'], {access_type: 'offline', approval_prompt: ''}
 #	if Rails.env.development?

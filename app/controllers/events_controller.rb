@@ -39,14 +39,33 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     auth = current_user.authentications.youtube.first
 
+  require 'faraday'
+
+  conn = Faraday.new(:url => 'https://accounts.google.com',:ssl => {:verify => false}) do |faraday|
+   faraday.request  :url_encoded
+   faraday.response :logger
+   faraday.adapter  Faraday.default_adapter
+  end
+
+  results = conn.post '/o/oauth2/token', {'code' => auth.token,
+  'client_id' => ENV['YOUTUBE_KEY'],
+  'client_secret' => ENV['YOUTUBE_SECRET'],
+  'redirect_uri' => "http://localhost:3000/auth/youtube/callback&",
+  'grant_type' => 'authorization_code'}
+
     client = YouTubeIt::OAuth2Client.new(
-    client_access_token: auth.token, 
-    client_id: ENV['YOUTUBE_KEY'], 
-    client_secret: ENV['YOUTUBE_SECRET'], 
-    dev_key: ENV['YOUTUBE_DEV'])
+     client_access_token: auth.token, 
+     client_id: ENV['YOUTUBE_KEY'], 
+     client_secret: ENV['YOUTUBE_SECRET'], 
+     dev_key: ENV['YOUTUBE_DEV'])
    
+#   puts "-------------------------results>"
+ #  puts results.to_yaml
+  # puts "---------------------__>end results"
+
+puts results.body.to_yaml
     a = client.my_videos
-    puts a.to_yaml
+    #puts a.to_yaml
   end
 
   def create
