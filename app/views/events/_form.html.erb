@@ -16,7 +16,11 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  </p>
   <div class="field">
     <%= f.label :event_time %><br />
     <%= f.datetime_select :event_time %>
@@ -45,31 +49,15 @@
 
 <h3>Request Video</h3>
   <div class="field">
-    <%= f.label :rv_title, "Title" %><br />
-    <%= f.text_field :rv_title %>
-  </div>
-  <div class="field">
-    <%= f.label :rv_description, "Description" %><br />
-    <%= f.text_field :rv_description %>
-  </div>
-  <div class="field">
-    <%= f.label :rv_keywords, "Keywords" %><br />
-    <%= f.text_field :rv_keywords %>
+    <%= f.label :request_video %><br />
+    <%= f.text_field :request_video %>
   </div>
 <br/>
 <h3>Proof Video</h3>
 
   <div class="field">
-    <%= f.label :rv_title, "Title" %><br />
-    <%= f.text_field :rv_title %>
-  </div>
-  <div class="field">
-    <%= f.label :rv_description, "Description" %><br />
-    <%= f.text_field :rv_description %>
-  </div>
-  <div class="field">
-    <%= f.label :rv_keywords, "Keywords" %><br />
-    <%= f.text_field :rv_keywords %>
+    <%= f.label :proof_video %><br />
+    <%= f.text_field :proof_video %>
   </div>
 <br />
 <br />

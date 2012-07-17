@@ -12,7 +12,7 @@
   <br />
   <% comments.each do |comment| %>
     <tr>
-      <td><%= image_tag comment.user.profile.image_url(:thumb_50)  %></td>
+      <td><%= link_to (image_tag comment.user.profile.image_url(:thumb_50)), comment.user  %></td>
       <td><%= comment.created_at.strftime("%m-%d-%Y %H:%M") %></td>
       <td><%= link_to comment.user.slug, comment.user %></td>
       <td><%= comment.content %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716193543) do
+ActiveRecord::Schema.define(:version => 20120717022611) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -62,22 +62,15 @@ ActiveRecord::Schema.define(:version => 20120716193543) do
     t.decimal  "minimum_raise"
     t.text     "description"
     t.string   "slug"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.datetime "event_time"
     t.datetime "raise_end"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "rv_title"
-    t.boolean  "rv_is_complete"
-    t.text     "rv_description"
-    t.text     "rv_keywords"
-    t.string   "rv_yt_video_id"
-    t.string   "pv_title"
-    t.boolean  "pv_is_complete"
-    t.text     "pv_description"
-    t.text     "pv_keywords"
-    t.string   "pv_yt_video_id"
+    t.string   "request_video"
+    t.string   "proof_video"
+    t.string   "image"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true

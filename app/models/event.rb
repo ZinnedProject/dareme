@@ -17,8 +17,9 @@ class Event < ActiveRecord::Base
   #Attributes
     attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
   	 :title, :user_id, :slug, :longitude,:latitude, :created_at, :updated_at,
-     :rv_title, :rv_is_complete, :rv_description, :rv_keywords, :rv_yt_video_id,
-     :pv_title, :pv_is_complete, :pv_description, :pv_keywords, :pv_yt_video_id
+     :request_video, :proof_video, :image, :remote_image_url
+
+    mount_uploader :image, ImageUploader
 
   #Callbacks
     before_save { |event| event.slug = event.slug.downcase }

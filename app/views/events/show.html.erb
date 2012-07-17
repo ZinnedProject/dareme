@@ -8,8 +8,16 @@
 <% else %>
   <%= link_to 'Stop Following Me!', @following, method: :delete, data: { confirm: 'Are you sure?' } %> 
 <% end %>
+<p>
+<%= image_tag @event.image_url(:thumb_200) %>
+</p>
 
 <br />
+<h1>Request Video</h1>
+<%= raw youtube_embed(@event.request_video) %>
+<br />
+<h1>Proof Video</h1>
+<%= raw youtube_embed(@event.proof_video) %>
 
 <p>
   <b>User Name:</b>

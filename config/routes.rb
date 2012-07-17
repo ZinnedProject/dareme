@@ -7,7 +7,8 @@ Dareme::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
   #Events
-    resources :events 
+    resources :events  
+  
     #match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
 
   #Default
