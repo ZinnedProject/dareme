@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
+
+
   def index
     @events = Event.default_order
 
@@ -15,6 +17,10 @@ class EventsController < ApplicationController
     @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
+    
+   #puts @event.votes_count
+
+    #puts current_user.voted_for?(@event)
     
     #Session variables for polymorphics
     session[:commentable_id] = @event.id
@@ -34,6 +40,24 @@ class EventsController < ApplicationController
       @event = Event.new
     end    
   end
+
+  def vote_for
+    @event = Event.find(params[:id])
+    current_user.vote_exclusively_for(@event)
+      respond_to do |format|
+        format.js
+      end
+  end
+  def vote_against
+    @event = Event.find(params[:id])
+    #if current_user.voted_for(@event)
+    #current_user.vote_against(@event)
+    current_user.vote_exclusively_against(@event)
+      respond_to do |format|
+        format.js
+      end
+  end
+
 
   def edit
     @event = Event.find(params[:id])
@@ -116,3 +140,4 @@ class EventsController < ApplicationController
 
 
 end
+

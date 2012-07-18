@@ -8,6 +8,12 @@
 <% else %>
   <%= link_to 'Stop Following Me!', @following, method: :delete, data: { confirm: 'Are you sure?' } %> 
 <% end %>
+<br />
+  <%= link_to image_tag('thumbs_up.png', width: "50", :border => 0), vote_for_event_path(@event), :remote => true  %>
+  <%= link_to image_tag('thumbs_down.png', width: "50", :border => 0), vote_against_event_path(@event), :remote => true  %>
+Total Votes: <%= @event.votes_count %>
+
+
 <p>
 <%= image_tag @event.image_url(:thumb_200) %>
 </p>

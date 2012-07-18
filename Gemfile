@@ -39,6 +39,9 @@ gem 'execjs'
 #Pagination
 	#gem 'will_paginate', '~> 3.0' --WARNING: Uses GEM kaminari for RAILS_ADMIN
 
+#Acts as votable
+	gem 'thumbs_up'
+
 #Youtube Gem
 	gem 'youtube_it'
 

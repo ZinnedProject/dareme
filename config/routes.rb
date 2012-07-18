@@ -8,6 +8,8 @@ Dareme::Application.routes.draw do
   
   #Events
     resources :events  
+    match "/events/:id/vote_for" => 'events#vote_for', as: 'vote_for_event'
+    match "/events/:id/vote_against" => 'events#vote_against', as: 'vote_against_event'
   
     #match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
 

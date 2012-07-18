@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  #Functionality for friendly IDs
+  #Functionality 
+   #Friendly IDs
     extend FriendlyId
     friendly_id :slug
+   #Acts as votable
+    acts_as_voter
+    has_karma(:events, :as => :submitter, :weight => 0.5)
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

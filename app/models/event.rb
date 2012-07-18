@@ -1,7 +1,10 @@
 class Event < ActiveRecord::Base
-  #Functionality for friendly IDs
+  #Functionality
+   #Friendly ID
     extend FriendlyId
     friendly_id :slug
+   #Votable
+    acts_as_voteable
 
 	#Associations
 	  belongs_to :user, :inverse_of => :events
