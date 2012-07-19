@@ -15,10 +15,10 @@ class Event < ActiveRecord::Base
     has_many :followers, :through => :followings, :source => :user
 
     #@event.videos
-    has_many :videos, inverse_of: :event 
+    #has_many :videos, inverse_of: :event 
 
   #Attributes
-    attr_accessible :description, :raise_end, :event_time, :location, :minimum_raise, 
+    attr_accessible :description, :status, :raise_end, :event_time, :location, :minimum_raise, 
   	 :title, :user_id, :slug, :longitude,:latitude, :created_at, :updated_at,
      :request_video, :proof_video, :image, :remote_image_url
 

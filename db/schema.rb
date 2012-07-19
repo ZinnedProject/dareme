@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718033625) do
+ActiveRecord::Schema.define(:version => 20120719002238) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
+    t.string   "nickname"
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "nickname"
     t.string   "token"
   end
 
@@ -57,11 +57,12 @@ ActiveRecord::Schema.define(:version => 20120718033625) do
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"
+    t.string   "slug"
     t.string   "title"
+    t.string   "status",       :default => "Started"
     t.string   "location"
     t.decimal  "minimum_raise"
     t.text     "description"
-    t.string   "slug"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.datetime "event_time"
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120718033625) do
     t.string   "request_video"
     t.string   "proof_video"
     t.string   "image"
+
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20120718033625) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
+    t.string   "slug"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -126,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20120718033625) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "slug"
+
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -9,10 +9,11 @@
   <%= link_to 'Stop Following Me!', @following, method: :delete, data: { confirm: 'Are you sure?' } %> 
 <% end %>
 <br />
+<% if @event.status == 'Complete' then %>
   <%= link_to image_tag('thumbs_up.png', width: "50", :border => 0), vote_for_event_path(@event), :remote => true  %>
   <%= link_to image_tag('thumbs_down.png', width: "50", :border => 0), vote_against_event_path(@event), :remote => true  %>
 Total Votes: <%= @event.total_vote %>
-
+<% end %>
 
 <p>
 <%= image_tag @event.image_url(:thumb_200) %>
@@ -67,4 +68,6 @@ Total Votes: <%= @event.total_vote %>
 <%= render "/comments/show_comments", :comments => @comments %>
 <% if current_user.followed_events.exists?(@event) then %>
   <%= render '/comments/form' %>
+<% else %>
+  You must be following this event in order to post a comment.
 <% end %>

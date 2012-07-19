@@ -112,7 +112,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-
+    @event.status = 'Complete' if not @event.proof_video.nil?
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
