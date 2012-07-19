@@ -8,7 +8,7 @@ class Vote < ActiveRecord::Base
   belongs_to :voteable, :polymorphic => true
   belongs_to :voter, :polymorphic => true
 
-  attr_accessible :vote, :voter, :voteable
+  attr_accessible :vote, :voter, :voteable, :voteable_id, :voteable_type
 
 
   # Comment out the line below to allow multiple votes per user.

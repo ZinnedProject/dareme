@@ -11,7 +11,7 @@
 <br />
   <%= link_to image_tag('thumbs_up.png', width: "50", :border => 0), vote_for_event_path(@event), :remote => true  %>
   <%= link_to image_tag('thumbs_down.png', width: "50", :border => 0), vote_against_event_path(@event), :remote => true  %>
-Total Votes: <%= @event.votes_count %>
+Total Votes: <%= @event.total_vote %>
 
 
 <p>

@@ -25,16 +25,8 @@ describe Event do
 		it { should respond_to(:created_at) }
 		it { should respond_to(:updated_at) }
 
-		it { should respond_to(:rv_title) }
-		it { should respond_to(:rv_is_complete) }
-		it { should respond_to(:rv_description) }
-		it { should respond_to(:rv_keywords) }
-		it { should respond_to(:rv_yt_video_id) }
-		it { should respond_to(:pv_title) }
-		it { should respond_to(:pv_is_complete) }
-		it { should respond_to(:pv_description) }		
-		it { should respond_to(:pv_keywords) }
-		it { should respond_to(:pv_yt_video_id) }
+		it { should respond_to(:request_video) }
+		it { should respond_to(:proof_video) }
 
 	end
 
@@ -121,6 +113,12 @@ describe Event do
 		it "Should not run geocoding if test environment" do
 			@event.geocoding.should be_false
 		end
+		it "Should return total vote" do
+			@user = FactoryGirl.create(:user)
+			@user.vote_against(@event)
+			@event.total_vote.should eq(-1)
+		end
+
 	end
 
 end

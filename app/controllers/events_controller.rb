@@ -17,11 +17,7 @@ class EventsController < ApplicationController
     @comments = @event.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
-    
-   #puts @event.votes_count
-
-    #puts current_user.voted_for?(@event)
-    
+      
     #Session variables for polymorphics
     session[:commentable_id] = @event.id
     session[:commentable_type] = @event.class  
@@ -34,28 +30,35 @@ class EventsController < ApplicationController
     end
   end
   def new
-    if not current_user.authentications.youtube.exists? then
-      redirect_to authentications_path, notice: 'Please authenticate with Youtube before creating an event!' 
-    else
+#    if not current_user.authentications.youtube.exists? then
+#      redirect_to authentications_path, notice: 'Please authenticate with Youtube before creating an event!' 
+#    else
       @event = Event.new
-    end    
+#    end    
   end
 
   def vote_for
     @event = Event.find(params[:id])
-    current_user.vote_exclusively_for(@event)
+    if current_user.voted_on?(@event) then
+      Vote.find_by_voteable_id_and_voteable_type(@event.id, 'Event').destroy
+    else
+      current_user.vote_exclusively_for(@event)
       respond_to do |format|
         format.js
       end
+    end
   end
+
   def vote_against
     @event = Event.find(params[:id])
-    #if current_user.voted_for(@event)
-    #current_user.vote_against(@event)
-    current_user.vote_exclusively_against(@event)
+    if current_user.voted_on?(@event) then
+      Vote.find_by_voteable_id_and_voteable_type(@event.id, 'Event').destroy
+    else
+      current_user.vote_exclusively_against(@event)
       respond_to do |format|
         format.js
       end
+    end
   end
 
 

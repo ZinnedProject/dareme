@@ -76,7 +76,9 @@ class Event < ActiveRecord::Base
 
   end
 
-
+    def total_vote
+      self.votes_for + (self.votes_against*-1)
+    end
 
 end
 
