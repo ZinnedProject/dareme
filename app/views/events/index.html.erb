@@ -22,6 +22,7 @@
     <th>Location</th>
     <th>Bidding End</th>
     <th>Following</th>
+    <th>Money Raised</th>
   </tr>
 
 <% @events.each do |event| %>
@@ -34,6 +35,7 @@
     <td><%= event.location %></td>
     <td><%= event.raise_end %></td>
     <td><%= event.followers.count %></td>
+    <td>Coming Soon </td>
   </tr>
 <% end %>
 </table>

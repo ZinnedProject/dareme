@@ -9,8 +9,8 @@ gem 'devise'
 #Loading and dumping database data
 #rake db:data:dump   ->   Dump contents of Rails database to db/data.yml
 #rake db:data:load   ->   Load contents of db/data.yml into the database
-#https://github.com/ludicast/yaml_db
-gem 'yaml_db'
+
+gem 'yaml_db'			#https://github.com/ludicast/yaml_db
 
 gem 'execjs'
 #gem 'therubyracer'
@@ -21,6 +21,7 @@ gem 'execjs'
 	gem 'carrierwave'
 	gem "rmagick"		#sudo apt-get install libmagickwand-dev
 	gem "mini_magick"	
+	gem "fog", "~> 1.3.1"
 
 #Simply URL helper
 	gem 'friendly_id'
