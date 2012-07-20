@@ -35,6 +35,12 @@ Profile Image<br/>
 </p>
 
 <p>
+  <b>Location:</b>
+  <%= current_user.profile.location %>
+</p>
+
+
+<p>
   <b>About:</b>
   <%= profile.about.html_safe if not profile.about.nil? %>
 </p>

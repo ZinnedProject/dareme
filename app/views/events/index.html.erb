@@ -2,6 +2,15 @@
 <br />
 <br />
 
+<%= link_to "All Open", events_path() %> | 
+<%= link_to "Most Popular Completed", events_path(index_type: 'most_popular_completed') %> | 
+<%= link_to "Most Popular Open", events_path(index_type: 'most_popular_open') %> |
+<%= link_to "Local Events", events_path(index_type: 'local') %> | 
+<%= link_to "All Completed", events_path(index_type: 'completed') %> 
+
+<br />
+<br />
+
 <h1>Listing Events</h1>
 
 <table>
@@ -12,6 +21,7 @@
     <th>Event Date</th>
     <th>Location</th>
     <th>Bidding End</th>
+    <th>Following</th>
   </tr>
 
 <% @events.each do |event| %>
@@ -23,6 +33,7 @@
     <td><%= event.event_time %></td>
     <td><%= event.location %></td>
     <td><%= event.raise_end %></td>
+    <td><%= event.followers.count %></td>
   </tr>
 <% end %>
 </table>

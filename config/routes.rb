@@ -7,7 +7,7 @@ Dareme::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
   #Events
-    resources :events  
+    resources :events
     match "/events/:id/vote_for" => 'events#vote_for', as: 'vote_for_event'
     match "/events/:id/vote_against" => 'events#vote_against', as: 'vote_against_event'
   

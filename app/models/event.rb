@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   #Attributes
     attr_accessible :description, :status, :raise_end, :event_time, :location, :minimum_raise, 
   	 :title, :user_id, :slug, :longitude,:latitude, :created_at, :updated_at,
-     :request_video, :proof_video, :image, :remote_image_url
+     :request_video, :proof_video, :image, :remote_image_url, :image_cache, :remove_image
 
     mount_uploader :image, ImageUploader
 
@@ -30,6 +30,10 @@ class Event < ActiveRecord::Base
 
   #Scopes
   	scope :default_order, order(:raise_end)
+    scope :popular, joins("LEFT JOIN followings ON followings.followable_type = 'Event' AND followings.followable_id = events.id").select("events.*, count(*) as users_following").group("events.id").order("users_following desc")
+    scope :open, where(status: 'Open')
+    scope :completed, where(status: 'Completed')
+    scope :limit_me, limit(100)
 
   #Validation
   	validates :slug, :presence => true

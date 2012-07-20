@@ -14,4 +14,6 @@
 /log/*.log
 /tmp
 /public/uploads/
+/public/system/
 /config/initializers/dev_environment.rb
+

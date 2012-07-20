@@ -3,7 +3,22 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.default_order
+    @type = params[:index_type]
+    
+    if @type.nil? then
+      @events = Event.open.default_order.limit_me
+    elsif @type == 'local'  #This needs some work.  Very non optimal especially if having a ton of events
+      @events = Event.all#.order(Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],["latitude","longitude"]).to_i)
+      @events.sort! {|a,b| Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[a.latitude,a.longitude]) <=> Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[b.latitude,b.longitude]) }
+    elsif @type == 'completed'
+      @events = Event.completed.default_order.limit_me
+    elsif @type == 'most_popular_open'
+      @events = Event.open.popular.limit_me    
+    elsif @type == 'most_popular_completed'
+      @events = Event.completed.popular.limit_me
+    else
+      @events = Event.default_order
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -101,6 +116,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        Following.create(user_id: current_user.id, followable: @event)
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else

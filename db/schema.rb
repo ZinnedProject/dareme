@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719002238) do
+ActiveRecord::Schema.define(:version => 20120720213350) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(:version => 20120719002238) do
     t.integer  "user_id"
     t.string   "slug"
     t.string   "title"
-    t.string   "status",       :default => "Started"
+    t.string   "status",        :default => "Open"
     t.string   "location"
     t.decimal  "minimum_raise"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.datetime "event_time"
     t.datetime "raise_end"
     t.float    "latitude"
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(:version => 20120719002238) do
     t.string   "request_video"
     t.string   "proof_video"
     t.string   "image"
-
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
@@ -98,6 +97,9 @@ ActiveRecord::Schema.define(:version => 20120719002238) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image"
+    t.string   "location"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
@@ -129,7 +131,6 @@ ActiveRecord::Schema.define(:version => 20120719002238) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
