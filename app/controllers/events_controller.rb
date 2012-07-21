@@ -12,13 +12,13 @@ class EventsController < ApplicationController
       @events = Event.all
       @events.sort! {|a,b| Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[a.latitude,a.longitude]) <=> Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[b.latitude,b.longitude]) }
     elsif @type == 'completed'
-      @events = Event.completed.default_order.limit_me
+      @events = Event.status_completed.default_order.limit_me
     elsif @type == 'most_popular_open'
-      @events = Event.open.popular.limit_me    
+      @events = Event.status_open.popular.limit_me    
     elsif @type == 'most_popular_completed'
-      @events = Event.completed.popular.limit_me
+      @events = Event.status_completed.popular.limit_me
     else
-      @events = Event.open.default_order.limit_me
+      @events = Event.status_open.default_order.limit_me
     end
 
     if @events.kind_of?(Array) then
@@ -32,8 +32,6 @@ class EventsController < ApplicationController
       format.json { render json: @events }
     end
   end
-
-
 
   def show
     @event = Event.find(params[:id])

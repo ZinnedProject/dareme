@@ -39,8 +39,8 @@ class Event < ActiveRecord::Base
   #Scopes
   	scope :default_order, order(:raise_end)
     scope :popular, joins("LEFT JOIN followings ON followings.followable_type = 'Event' AND followings.followable_id = events.id").select("events.*, count(*) as users_following").group("events.id").order("users_following desc")
-    scope :open, where(status: 'Open')
-    scope :completed, where(status: 'Completed')
+    scope :status_open, where(status: 'Open')
+    scope :status_completed, where(status: 'Completed')
     scope :limit_me, limit(100)
 
 
@@ -104,22 +104,22 @@ class Event < ActiveRecord::Base
 
     def create_notifications
       content = Array.new
-      content << self.title.to_s + " has changed its location to " + self.location if location_changed?
-      content << self.title.to_s + " has changed its description.. you may want to check it out" if description_changed?
-      content << self.title.to_s + " is the new name of the event." if title_changed?
-      content << self.title.to_s + " has changed its event time.  Don't be late." if event_time_changed?
-      content << self.title.to_s + " has a new sweet image.  Check it out." if image_changed?
+      content << " has changed its location to " + self.location if location_changed?
+      content << " has changed its description.. you may want to check it out" if description_changed?
+      content << " is the new name of the event." if title_changed?
+      content << " has changed its event time.  Don't be late." if event_time_changed?
+      content << " has a new sweet image.  Check it out." if image_changed?
 
    
       if content.count > 1
-        Notification.create(content:self.title.to_s + " Was was just updated.  A lot.  Review it now!" , notifiable: self) 
+        Notification.create(content:" was was just updated.  A lot.  Review it now!" , notifiable: self) 
       elsif content.count == 1
         Notification.create(content: content[0], notifiable: self) 
       end
       
       if status_changed?
         if self.status == 'Completed'
-          content = self.title.to_s + " has just been completed.  Check it out now!  It's some crazy sh*t."         
+          content = " has just been completed.  Check it out now!  It's some crazy sh*t."         
           Notification.create(content: content, notifiable: self) 
         end
       end

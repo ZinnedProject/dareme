@@ -22,12 +22,13 @@ include ApplicationHelper
     #Rails.logger.info("PARAMS: #{params.inspect}")   
     respond_to do |format|
       if @following.save
-        format.html { redirect_to :back, notice: 'Are are now following...' }
+        format.html { redirect_to @followable, notice: 'Are are now following...' }
       else
         format.html { render action: "new" }
       end
     end
   end
+
 
   def destroy
     @following = Following.find_by_id(params[:id])  

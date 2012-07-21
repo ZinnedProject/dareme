@@ -4,6 +4,8 @@ class UsersController < Devise::SessionsController
 
   def dashboard
     @user = current_user
+    @notifications = @user.follows.joins('INNER JOIN notifications ON followings.followable_id = notifications.notifiable_id AND followings.followable_type = notifications.notifiable_type').select('*')    
+
     respond_to do |format|
       format.html # dashboard.html.erb
     end
