@@ -124,6 +124,51 @@ describe Event do
 			event = FactoryGirl.create(:event, user: @user, description: "Tents for sale", title: "I love tents")
 			Event.text_search("tent").count.should eq(1)
 		end
+		it "Should create a notification if the location changes" do
+			@event.location = "Madison, Wisco"
+			@event.save
+			Notification.count.should eq(1)
+		end
+		it "Should create a notification if the title changes" do
+			@event.title = "Madison, Wisco"
+			@event.save
+			Notification.count.should eq(1)
+		end
+		it "Should create a notification if the description changes" do
+			@event.description = "Madison, Wisco"
+			@event.save
+			Notification.count.should eq(1)
+		end
+		it "Should create a notification if the event_time changes" do
+			@event.event_time = "1932-01-01"
+			@event.save
+			Notification.count.should eq(1)
+		end
+		it "Should create a notification if the image changes" do
+			@event.image = "Madison, Wisco"
+			@event.save
+			Notification.count.should eq(1)
+		end
+		it "Should create a notification if the status changes to Completed" do
+			@event.status = "Completed"
+			@event.save
+			Notification.count.should eq(1)
+
+		end
+		it "Should create a single notification if many fields change" do
+			@event.title = "New Title"
+			@event.description = "New Description"
+			@event.save
+			Notification.count.should eq(1)
+		end
+		it "Should create two notifications if many fields change and the status changes" do
+			@event.title = "New Title"
+			@event.description = "New Description"
+			@event.status = "Completed"
+			@event.save
+			Notification.count.should eq(2)
+		end
+
 	end
 
 end

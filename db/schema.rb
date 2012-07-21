@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721042118) do
+ActiveRecord::Schema.define(:version => 20120721145735) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -88,6 +88,17 @@ ActiveRecord::Schema.define(:version => 20120721042118) do
   add_index "followings", ["followable_id"], :name => "index_followings_on_followable_id"
   add_index "followings", ["followable_type"], :name => "index_followings_on_followable_type"
   add_index "followings", ["user_id", "followable_id", "followable_type"], :name => "index_followings_on_all", :unique => true
+
+  create_table "notifications", :force => true do |t|
+    t.text     "content"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
+  add_index "notifications", ["notifiable_type"], :name => "index_notifications_on_notifiable_type"
 
   create_table "pg_search_documents", :force => true do |t|
     t.text     "content"

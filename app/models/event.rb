@@ -13,8 +13,6 @@ class Event < ActiveRecord::Base
       using: {tsearch: {dictionary: "english", :prefix => true}}
       #http://railscasts.com/episodes/343-full-text-search-in-postgresql
 
-
-
 	#Associations
 	  belongs_to :user, :inverse_of => :events
     has_many :comments, :as => :commentable
@@ -23,8 +21,8 @@ class Event < ActiveRecord::Base
     has_many :followings, :as => :followable
     has_many :followers, :through => :followings, :source => :user
 
-    #@event.videos
-    #has_many :videos, inverse_of: :event 
+    #@events.notifications
+    has_many :notifications, as: :notifiable
 
   #Attributes
     attr_accessible :description, :status, :raise_end, :event_time, :location, :minimum_raise, 
@@ -35,7 +33,8 @@ class Event < ActiveRecord::Base
 
   #Callbacks
     before_save { |event| event.slug = event.slug.downcase }
-    after_validation :geocoding
+    #after_validation :geocoding
+    after_update :create_notifications
 
   #Scopes
   	scope :default_order, order(:raise_end)
@@ -100,6 +99,29 @@ class Event < ActiveRecord::Base
         event_search(query).limit_me
       else 
         scoped
+      end
+    end
+
+    def create_notifications
+      content = Array.new
+      content << self.title.to_s + " has changed its location to " + self.location if location_changed?
+      content << self.title.to_s + " has changed its description.. you may want to check it out" if description_changed?
+      content << self.title.to_s + " is the new name of the event." if title_changed?
+      content << self.title.to_s + " has changed its event time.  Don't be late." if event_time_changed?
+      content << self.title.to_s + " has a new sweet image.  Check it out." if image_changed?
+
+   
+      if content.count > 1
+        Notification.create(content:self.title.to_s + " Was was just updated.  A lot.  Review it now!" , notifiable: self) 
+      elsif content.count == 1
+        Notification.create(content: content[0], notifiable: self) 
+      end
+      
+      if status_changed?
+        if self.status == 'Completed'
+          content = self.title.to_s + " has just been completed.  Check it out now!  It's some crazy sh*t."         
+          Notification.create(content: content, notifiable: self) 
+        end
       end
     end
 

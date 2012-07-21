@@ -14,7 +14,7 @@ Dareme::Application.routes.draw do
     #match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
 
   #Default
-    root :to => "events#index"
+    root :to => "users#dashboard"
 
   #Profile Resources
     resources :profiles, :only => [:update, :edit] 
@@ -31,12 +31,12 @@ Dareme::Application.routes.draw do
   #Devise / Login 
     devise_for :users    
     devise_scope :user do 
+      match '/dashboard' => 'users#dashboard', as: 'dashboard'
       resources :users, only: [:show]
-    end
+    end   
 
   #Authentications
-  match '/auth/:provider/callback' => 'authentications#create'
-
+    match '/auth/:provider/callback' => 'authentications#create'
     
 
   # The priority is based upon order of creation:

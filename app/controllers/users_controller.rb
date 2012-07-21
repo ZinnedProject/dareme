@@ -2,6 +2,13 @@ class UsersController < Devise::SessionsController
   before_filter :authenticate_user!
   include ApplicationHelper
 
+  def dashboard
+    @user = current_user
+    respond_to do |format|
+      format.html # dashboard.html.erb
+    end
+  end
+
   def show
 
     #@user = get_profile(params).user
