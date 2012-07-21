@@ -21,11 +21,15 @@ gem 'execjs'
 	gem 'carrierwave'
 	gem "rmagick"		#sudo apt-get install libmagickwand-dev
 	gem "mini_magick"	
+
+#Asset storage
 	gem "fog", "~> 1.3.1"
 
+#Full Text Searching
+	gem 'pg_search'
+	
 #Simply URL helper
 	gem 'friendly_id'
-
 
 #Authentications
 	gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'

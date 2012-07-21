@@ -118,7 +118,12 @@ describe Event do
 			@user.vote_against(@event)
 			@event.total_vote.should eq(-1)
 		end
-
+		it "Should find the search term" do
+			@user = FactoryGirl.create(:user)
+			created_events = FactoryGirl.create_list(:event, 5, user: @user)
+			event = FactoryGirl.create(:event, user: @user, description: "Tents for sale", title: "I love tents")
+			Event.text_search("tent").count.should eq(1)
+		end
 	end
 
 end

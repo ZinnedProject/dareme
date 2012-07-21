@@ -7,12 +7,18 @@
 <%= link_to "Most Popular Open", events_path(index_type: 'most_popular_open') %> |
 <%= link_to "Local Events", events_path(index_type: 'local') %> | 
 <%= link_to "All Completed", events_path(index_type: 'completed') %> 
+<%= form_tag events_path, method: :get do %>
+<p>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search", name: nil %>
+</p>
+<% end %>
 
-<br />
 <br />
 
 <h1>Listing Events</h1>
-
+<%= paginate @events %>
+<br />
 <table>
   <tr>
     <th></th>

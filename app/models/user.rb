@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     acts_as_voter
     has_karma(:events, :as => :submitter, :weight => 0.5)
 
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

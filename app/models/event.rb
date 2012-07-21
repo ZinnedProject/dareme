@@ -5,6 +5,15 @@ class Event < ActiveRecord::Base
     friendly_id :slug
    #Votable
     acts_as_voteable
+   #PG Full Text Searching
+    include PgSearch
+#    multisearchable :against => [:title, :location, :description]
+    pg_search_scope :event_search, 
+      against: {:title => 'A',:location => 'B',:description => 'C'},
+      using: {tsearch: {dictionary: "english", :prefix => true}}
+      #http://railscasts.com/episodes/343-full-text-search-in-postgresql
+
+
 
 	#Associations
 	  belongs_to :user, :inverse_of => :events
@@ -34,6 +43,7 @@ class Event < ActiveRecord::Base
     scope :open, where(status: 'Open')
     scope :completed, where(status: 'Completed')
     scope :limit_me, limit(100)
+
 
   #Validation
   	validates :slug, :presence => true
@@ -82,6 +92,15 @@ class Event < ActiveRecord::Base
 
     def total_vote
       self.votes_for + (self.votes_against*-1)
+    end
+
+    #Full Text Search
+    def self.text_search(query)
+      if query.present?
+        event_search(query).limit_me
+      else 
+        scoped
+      end
     end
 
 end

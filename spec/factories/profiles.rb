@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :profile do
-    first_name "MyString"
-    last_name "MyString"
+    first_name "Donald"
+    last_name "Driver"
     user_id 1
-    about "MyString"
+    about "I'm a long time pro athlete and I'm here to stay.  I have no regrets only dreams I wish to accomplish."
   end
 end

@@ -2,8 +2,12 @@
 
 FactoryGirl.define do
   factory :user do
-  	email '38sf8@gfhd.com'
+  	 sequence :email do |n|
+      "email_#{n}@daremenow.com"
+    end
   	password 'afwefdf'
-  	slug "userslug"
+  	 sequence :slug do |n|
+      "slug_#{n}"
+    end
   end
 end

@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+
   #Associations
   	belongs_to :user, :inverse_of => :profile
 
