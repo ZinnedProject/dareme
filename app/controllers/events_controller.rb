@@ -6,19 +6,22 @@ class EventsController < ApplicationController
     @type = params[:index_type]
     @query = params[:query]
 
+    @events = Event.includes(:user)
+
+#    @a = Following.group(:followable_id, :followable_type).select("count(*) as count, followable_id, followable_type")
+
     if not @query.nil?
-      @events = Event.text_search(@query).default_order.limit_me
-    elsif @type == 'local'  #This needs some work.  Very non optimal especially if having a ton of events
-      @events = Event.all
+      @events = @events.text_search(@query).default_order.limit_me
+    elsif @type == 'local'  #This needs some work.  Very non optimal especially if having a ton of events     
       @events.sort! {|a,b| Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[a.latitude,a.longitude]) <=> Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[b.latitude,b.longitude]) }
     elsif @type == 'completed'
-      @events = Event.status_completed.default_order.limit_me
+      @events = @events.status_completed.default_order.limit_me
     elsif @type == 'most_popular_open'
-      @events = Event.status_open.popular.limit_me    
+      @events = @events.status_open.popular.limit_me    
     elsif @type == 'most_popular_completed'
-      @events = Event.status_completed.popular.limit_me
+      @events = @events.status_completed.popular.limit_me
     else
-      @events = Event.status_open.default_order.limit_me
+      @events = @events.status_open.default_order.limit_me
     end
 
     if @events.kind_of?(Array) then
@@ -36,7 +39,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @following = Following.find_by_followable_type_and_followable_id_and_user_id("Event",@event.id,current_user.id)
-    @comments = @event.comments.page(params[:page]).per(10)
+    @comments = @event.comments.includes(:user).page(params[:page]).per(10)
     @comment = Comment.new
     @commentable = @event
       

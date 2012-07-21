@@ -70,6 +70,6 @@ Profile Image<br/>
 
 <h1>Comments </h1>
 <%= render "/comments/show_comments", :comments => comments %>
-<% if current_user.followed_users.exists?(@user) then %>
+<% if current_user.followed_users.exists?(@user) or @user == current_user then %>
   <%= render '/comments/form' %>
 <% end %>

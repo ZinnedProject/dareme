@@ -14,7 +14,8 @@ Dareme::Application.routes.draw do
     #match '/events/:id/follow' => 'followings#create', as: 'create_following', via: :post
 
   #Default
-    root :to => "users#dashboard"
+   
+    #root :to => "events#index"
 
   #Profile Resources
     resources :profiles, :only => [:update, :edit] 
@@ -32,6 +33,7 @@ Dareme::Application.routes.draw do
     devise_for :users    
     devise_scope :user do 
       match '/dashboard' => 'users#dashboard', as: 'dashboard'
+      root :to => "users#dashboard"
       resources :users, only: [:show]
     end   
 
