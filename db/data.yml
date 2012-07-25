@@ -1,5 +1,51 @@
 
 ---
+pg_search_documents:
+  columns:
+  - id
+  - content
+  - searchable_id
+  - searchable_type
+  - created_at
+  - updated_at
+  records: 
+  - - '1'
+    - ! "Fishing For Flies Madison, WI <p>\r\n\tHere is a description of the flies</p>\r\n"
+    - '1'
+    - Event
+    - '2012-07-21 04:33:26.061871'
+    - '2012-07-21 04:33:26.061871'
+  - - '2'
+    - ! "Adam Perkins Madison, WI <p>\r\n\tI am awesome! Awesome!</p>\r\n"
+    - '1'
+    - Profile
+    - '2012-07-21 04:33:40.869308'
+    - '2012-07-21 04:33:40.869308'
+
+---
+notifications:
+  columns:
+  - id
+  - content
+  - notifiable_id
+  - notifiable_type
+  - created_at
+  - updated_at
+  records: 
+  - - '4'
+    - ! ' has changed its location to Las Vegas, Nevada'
+    - '2'
+    - Event
+    - '2012-07-21 20:31:17.277896'
+    - '2012-07-21 20:54:05.710899'
+  - - '5'
+    - ! ' has changed its description.. you may want to check it out'
+    - '8'
+    - Event
+    - '2012-07-21 20:34:57.80498'
+    - '2012-07-21 20:54:12.384835'
+
+---
 profiles:
   columns:
   - id
@@ -18,9 +64,10 @@ profiles:
     - Adam
     - Perkins
     - '1'
-    - ! "<p>\r\n\tI am awesome!</p>\r\n"
+    - ! "<p>\r\n\tI am awesome! Awesome!</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\t<a
+      href=\"http://www.facebook.com\">Check out my facebook!</a></p>\r\n"
     - '2012-07-19 20:21:55.068109'
-    - '2012-07-20 23:12:24.196212'
+    - '2012-07-21 14:09:20.039129'
     - adam.jpg
     - Madison, WI
     - '-89.4012302'
@@ -55,6 +102,90 @@ comments:
     - '1'
     - '2012-07-20 00:30:21.147198'
     - '2012-07-20 00:30:21.147198'
+  - - '2'
+    - I love comments
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:55:01.428152'
+    - '2012-07-21 21:55:01.428152'
+  - - '3'
+    - They really are a lot of fun
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:55:08.207224'
+    - '2012-07-21 21:55:08.207224'
+  - - '4'
+    - I'm checking to see if I have a 1 + N query problem in my comments
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:55:19.257744'
+    - '2012-07-21 21:55:19.257744'
+  - - '5'
+    - It would appear that I do
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:55:26.610448'
+    - '2012-07-21 21:55:26.610448'
+  - - '6'
+    - The DB load just keeps happening
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:55:36.962302'
+    - '2012-07-21 21:55:36.962302'
+  - - '7'
+    - I dont need this many queries
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:55:44.498784'
+    - '2012-07-21 21:55:44.498784'
+  - - '8'
+    - Sweet I just fixed the N + 1 Query Problem
+    - '1'
+    - User
+    - '1'
+    - '2012-07-21 21:57:35.650815'
+    - '2012-07-21 21:57:35.650815'
+  - - '9'
+    - I can't wait for this event!
+    - '2'
+    - Event
+    - '1'
+    - '2012-07-21 21:57:56.310198'
+    - '2012-07-21 21:57:56.310198'
+  - - '10'
+    - IT is going to be the best one ever
+    - '2'
+    - Event
+    - '1'
+    - '2012-07-21 21:58:02.858823'
+    - '2012-07-21 21:58:02.858823'
+  - - '11'
+    - It appears there is another N + 1 loading bug here
+    - '2'
+    - Event
+    - '1'
+    - '2012-07-21 21:58:13.156269'
+    - '2012-07-21 21:58:13.156269'
+  - - '12'
+    - I think I shall fix it
+    - '2'
+    - Event
+    - '1'
+    - '2012-07-21 21:58:19.941725'
+    - '2012-07-21 21:58:19.941725'
+  - - '13'
+    - Awesome, it is now fixed
+    - '2'
+    - Event
+    - '1'
+    - '2012-07-21 21:59:05.39446'
+    - '2012-07-21 21:59:05.39446'
 
 ---
 events:
@@ -82,11 +213,11 @@ events:
     - fishing_for_flies
     - Fishing For Flies
     - Open
-    - Madison, WI
+    - Madison, Wisconsin
     - '20.0'
     - ! "<p>\r\n\tHere is a description of the flies</p>\r\n"
     - '2012-07-19 20:23:05.522221'
-    - '2012-07-20 23:20:04.334107'
+    - '2012-07-21 15:16:35.854696'
     - '2012-07-19 20:21:00'
     - '2012-07-19 20:21:00'
     - '43.0730517'
@@ -99,12 +230,12 @@ events:
     - visit_the_strip
     - Visit the Strip Naked
     - Open
-    - Las Vegas, NV
+    - Las Vegas, Nevada
     - '125.0'
     - ! "<p>\r\n\tVisit the &nbsp;strip naked. &nbsp;Run around and have a goooood
       time!</p>\r\n"
     - '2012-07-19 20:32:26.642284'
-    - '2012-07-20 23:10:58.866926'
+    - '2012-07-21 20:31:17.178425'
     - '2012-07-19 20:31:00'
     - '2012-07-19 20:31:00'
     - '36.114646'
@@ -204,9 +335,9 @@ events:
     - Open
     - Deforest, WI
     - '200.0'
-    - ! "<p>\r\n\tJust wait until you see THIS!</p>\r\n"
+    - ! "<p>\r\n\tJust wait until you see THIS! &nbsp;I love my job!</p>\r\n"
     - '2012-07-20 23:44:55.586'
-    - '2012-07-20 23:45:06.178427'
+    - '2012-07-21 20:34:57.802339'
     - '2012-07-20 23:44:00'
     - '2012-07-20 23:44:00'
     - '43.24576'
@@ -361,6 +492,12 @@ followings:
     - Event
     - '2012-07-20 23:49:57.34486'
     - '2012-07-20 23:49:57.34486'
+  - - '17'
+    - '1'
+    - '1'
+    - Event
+    - '2012-07-21 20:49:21.628135'
+    - '2012-07-21 20:49:21.628135'
 
 ---
 users:
@@ -387,13 +524,13 @@ users:
     - 
     - 
     - 
-    - '3'
-    - '2012-07-20 23:00:34.738384'
-    - '2012-07-20 20:53:51.619501'
+    - '6'
+    - '2012-07-21 22:17:55.255137'
+    - '2012-07-21 22:17:40.879599'
     - 127.0.0.1
     - 127.0.0.1
     - '2012-07-19 20:21:54.940697'
-    - '2012-07-20 23:00:34.739225'
+    - '2012-07-21 22:17:55.255947'
   - - '2'
     - phil@gmail.com
     - phil
