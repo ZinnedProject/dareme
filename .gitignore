@@ -15,5 +15,7 @@
 /tmp
 /public/uploads/
 /public/system/
-/config/initializers/dev_environment.rb
+
+#Ignore my special APP keys
+#/config/initializers/dev_environment.rb
 
