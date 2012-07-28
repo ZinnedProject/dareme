@@ -41,7 +41,8 @@ include ApplicationHelper
    @following.destroy if Following.find_by_id_and_user_id(@following.id, @following.user_id)
 
     respond_to do |format|
-      format.html { redirect_to @f, notice: "You are no longer following..." }
+      format.html { redirect_to :back, notice: "You are no longer following " + @f.slug }
+      #format.html { redirect_to @f, notice: "You are no longer following..." }
       format.json { head :no_content }
     end
   end

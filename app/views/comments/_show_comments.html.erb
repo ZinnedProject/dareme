@@ -17,7 +17,7 @@
       <td><%= link_to comment.user.slug, comment.user %></td>
       <td><%= comment.content %></td>
       <td>
-        <% if current_user.id == comment.user_id or current_user.id == @commentable.user_id then %>
+        <% if current_user.id == comment.user_id or (@commentable.class == 'Event' and current_user.id == @commentable.user_id) or (@commentable.class == 'User' and current_user.id = @commentable.id) then %>
           <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
       </td>

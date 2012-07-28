@@ -2,7 +2,7 @@
 <h1>Profile</h1>
 
 <% if current_user.id == profile.user_id then %>
-  <%= link_to 'Edit', edit_profile_path(profile) %> 
+  <%= link_to 'Edit', edit_profile_path(user.profile) %> 
 <% else %>
   <% if @following.nil? %>
     <%= link_to 'Follow Me!', followings_path, method: :post %> 
@@ -24,19 +24,15 @@ Profile Image<br/>
   <%= profile.last_name %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= profile.user_id %>
-</p>
 
 <p>
   <b>User Name:</b>
-  <%= current_user.slug %>
+  <%= user.slug %>
 </p>
 
 <p>
   <b>Location:</b>
-  <%= current_user.profile.location %>
+  <%= profile.location %>
 </p>
 
 
@@ -56,7 +52,7 @@ Profile Image<br/>
     <th>Bidding End</th>
   </tr>
 
-<% events.each do |event| %>
+<% user.events.each do |event| %>
   <tr>
     <td><%= link_to event.title, event %></td>
     <td><%= event.event_time %></td>

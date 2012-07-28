@@ -1,13 +1,11 @@
 <h2>Dashboard</h2>
 
 <h3>Notification Stream</h3>
-
-<%# paginate @events %>
 <br />
 <table>
   <tr>
     <th>Message</th>
-		<th>Time</th>
+	<th>Time</th>
   </tr>
 
 <% @notifications.each do |n| %>
@@ -18,3 +16,35 @@
 <% end %>
 </table>
 
+<br />
+<br />
+<h2>Followed Users</h2>
+<br />
+<table>
+<% @followed_users.in_groups_of(4,false) do |users| %>
+	<tr>
+		<% users.each do |user| %>
+			<td>
+			<%= render '/users/display_user_in_search', :user => user %>
+			</td>
+		<% end %>
+	</tr>
+<% end %>
+</table>
+
+
+<br />
+<br />
+<h2>Followed Events</h2>
+<br />
+<table>
+<% @followed_events.in_groups_of(4,false) do |events| %>
+	<tr>
+		<% events.each do |event| %>
+			<td>
+			<%= render '/events/display_event_in_search', :event => event %>
+			</td>
+		<% end %>
+	</tr>
+<% end %>
+</table>

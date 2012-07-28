@@ -1,0 +1,3 @@
+<%= link_to image_tag(user.profile.image_url(:thumb_200)), user %> <br />
+<%= link_to user.slug, user %> 
+<%= link_to 'Stop Following', Following.find_by_followable_type_and_followable_id_and_user_id("User",user.id,current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %> 
