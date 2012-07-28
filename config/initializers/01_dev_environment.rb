@@ -1,4 +1,4 @@
-unless Rails.env.production?
+unless Rails.env.test?
   ENV['YOUTUBE_KEY'] = '633811617159.apps.googleusercontent.com'
   ENV['YOUTUBE_SECRET'] = 'W0Hkmep9rdi6hyTRFc6QH8uZ'
 	ENV['YOUTUBE_DEV'] = 'AI39si7hFJzX0eBY-oRKBgH2g_ZmnObMB7FJ5STKoe72nWVscB9qXSUSJ519eEW5r7I8dvnd3a3IgrZQmRfX_Lv7ebnwOmWKTQ'
