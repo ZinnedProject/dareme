@@ -7,8 +7,13 @@ RailsAdmin.config do |config|
   # require 'i18n'
   # I18n.default_locale = :de
 
-  config.current_user_method { current_user } # auto-generated
 
+  config.authenticate_with {} # leave it to authorize
+  config.authorize_with do
+    redirect_to main_app.new_user_session_path unless current_user.admin?
+  end
+  #config.current_user_method { current_user } # auto-generated
+  
   # If you want to track changes on your models:
   # config.audit_with :history, User
 

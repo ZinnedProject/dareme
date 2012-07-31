@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     has_many :authentications, inverse_of: :user
 
   #Attributes
-  	attr_accessible :email, :password, :password_confirmation, :remember_me, :slug
+  	attr_accessible :email, :password, :password_confirmation, :remember_me, :slug, :admin
 
   #Callbacks
     after_create :create_profile
