@@ -35,7 +35,8 @@ gem 'execjs'
 	gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
 	gem 'omniauth-oauth2', :git => 'git://github.com/intridea/omniauth-oauth2.git'
 	gem 'omniauth-youtube', :git => 'git://github.com/jamiew/omniauth-youtube.git'
-
+	gem 'omniauth-facebook'	
+	
 	gem 'authbuttons-rails'
 #	gem 'omniauth-google-oauth2'		#https://github.com/intridea/omniauth/wiki'
 #Background Jobs
