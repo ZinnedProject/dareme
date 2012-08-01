@@ -10,7 +10,7 @@ RailsAdmin.config do |config|
 
   config.authenticate_with {} # leave it to authorize
   config.authorize_with do
-    redirect_to main_app.new_user_session_path unless current_user.admin?
+    redirect_to main_app.new_user_session_path unless current_user && current_user.admin?
   end
   #config.current_user_method { current_user } # auto-generated
   

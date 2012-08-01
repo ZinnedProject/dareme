@@ -11,6 +11,7 @@ class UsersController < Devise::SessionsController
 
 
   def dashboard
+
     @notifications = current_user.follows.joins('INNER JOIN notifications ON followings.followable_id = notifications.notifiable_id AND followings.followable_type = notifications.notifiable_type').select('*')    
     @followed_users = current_user.followed_users.includes(:profile)
     @followed_events = current_user.followed_events

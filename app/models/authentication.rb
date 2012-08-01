@@ -7,4 +7,5 @@ class Authentication < ActiveRecord::Base
 
   #Scopes
   	scope :youtube, where(:provider => 'youtube')
+  	scope :facebook, where(:provider => 'facebook')
 end

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
   #Associations (Remove DD for all associations.  Destory = inactivate)
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     has_many :followers, :through => :followings, :source => :user
 
     #user.authentications
-    has_many :authentications, inverse_of: :user
+    has_many :authentications, inverse_of: :user, :dependent => :destroy
 
   #Attributes
   	attr_accessible :email, :password, :password_confirmation, :remember_me, :slug, :admin
@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
         a different user name"} 
     validates :slug, :length => {:maximum => 50, :too_long => "%{count} characters is the maximum allowed"}
     validates :slug, :length => {:minimum => 4, :too_short => "%{count} characters is the manimum allowed"}
-    validates :slug, :uniqueness => { :case_sensitive => false }
+    validates :slug, :uniqueness => { :case_sensitive => false, message: "has already been taken"}
 
   def create_profile  #When a user is created make sure a profile is created for them as well
     profile = Profile.new
@@ -62,4 +62,34 @@ class User < ActiveRecord::Base
     profile.save(validate: false)
   end
 
-end
+
+  def self.from_omniauth(auth)
+    authentication = Authentication.where(auth.slice(:provider, :uid)).first
+
+    if authentication
+      user = User.find(authentication.user_id)
+    else
+      user = User.create(slug: auth.info.nickname, email: auth.info.email)
+    end
+  end
+
+  def self.new_with_session(params, session) 
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"], without_protection: true) do |user|
+        user.attributes = params
+        user.email = session["devise.omniauth_attributes"].email
+        user.valid?
+        user.save
+        Authentication.create(nickname:session["devise.omniauth_attributes"].nickname,  
+              user_id: user.id, 
+              provider: session["devise.omniauth_attributes"].provider, 
+              uid: session["devise.omniauth_attributes"].uid) if user.valid?
+      end     
+    else
+      super
+    end
+  end
+
+end # End Class
+
+

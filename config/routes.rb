@@ -30,7 +30,8 @@ Dareme::Application.routes.draw do
     resources :followings, only: [:destroy, :create]
   
   #Devise / Login 
-    devise_for :users    
+    devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
     devise_scope :user do 
       match '/dashboard' => 'users#dashboard', as: 'dashboard'
       root :to => "users#dashboard"
