@@ -131,6 +131,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
+    fattr (2.2.1)
     ffi (1.0.11)
     fog (1.3.1)
       builder
@@ -153,7 +154,18 @@ GEM
       guard (>= 1.1)
     haml (3.1.6)
     hashie (1.2.0)
+    heroku (2.26.3)
+      heroku-api (~> 0.2.1)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.2)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.2.1)
+      excon (~> 0.13.3)
     hike (1.2.1)
+    hirefire (0.1.4)
+      heroku (>= 1.4)
+      rush (~> 0.6.7)
     hpricot (0.8.6)
     httpauth (0.1)
     i18n (0.6.0)
@@ -187,6 +199,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    launchy (2.1.0)
+      addressable (~> 2.2.6)
     libnotify (0.5.9)
     libwebsocket (0.1.3)
       addressable
@@ -206,6 +220,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
+    netrc (0.7.5)
     nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.8.0)
@@ -274,6 +289,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (1.0.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rmagick (2.13.1)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
@@ -290,6 +307,8 @@ GEM
       rspec (~> 2.10.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.9)
+    rush (0.6.8)
+      session
     sass (3.1.20)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -300,6 +319,8 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    session (3.1.0)
+      fattr
     shoulda (3.0.1)
       shoulda-context (~> 1.0.0)
       shoulda-matchers (~> 1.0.0)
@@ -369,6 +390,7 @@ DEPENDENCIES
   growl
   guard-rspec
   guard-spork!
+  hirefire
   jasmine-rails
   jquery-rails
   libnotify (= 0.5.9)
