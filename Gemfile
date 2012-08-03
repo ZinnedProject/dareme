@@ -20,7 +20,7 @@ gem 'devise'
 #Delayed Processing
 	gem 'delayed_job_active_record'
 	gem "delayed_job_web"
-	gem 'hirefire'	#Makes sure only using workers I need
+	gem "workless", "~> 1.0.1"	#Makes sure only using workers I need
 
 #Image processing
 	gem 'carrierwave'
