@@ -41,6 +41,8 @@ Dareme::Application.routes.draw do
   #Authentications
     match '/auth/:provider/callback' => 'authentications#create'
     
+  #System / MISC
+  match "/delayed_job" => DelayedJobWeb, :anchor => false
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

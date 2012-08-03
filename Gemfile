@@ -10,20 +10,26 @@ gem 'devise'
 #rake db:data:dump   ->   Dump contents of Rails database to db/data.yml
 #rake db:data:load   ->   Load contents of db/data.yml into the database
 
-gem 'yaml_db'			#https://github.com/ludicast/yaml_db
+	gem 'yaml_db'			#https://github.com/ludicast/yaml_db
 
-gem 'execjs'
+	gem 'execjs'
 #gem 'therubyracer'
 #gem 'bootstrap-sass', ['~> 2.0', '>= 2.0.3']
 #https://github.com/seyhunak/twitter-bootstrap-rails/
+
+#Delayed Processing
+	gem 'delayed_job_active_record'
+	gem "delayed_job_web"
 
 #Image processing
 	gem 'carrierwave'
 	gem "rmagick"		#sudo apt-get install libmagickwand-dev
 	gem "mini_magick"	
-
+	gem 'carrierwave_backgrounder'
+	
 #Asset storage
 	gem "fog", "~> 1.3.1"
+
 
 #Full Text Searching
 	gem 'pg_search'

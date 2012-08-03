@@ -3,11 +3,14 @@ class Event < ActiveRecord::Base
    #Friendly ID
     extend FriendlyId
     friendly_id :slug
+
    #Votable
     acts_as_voteable
+
    #PG Full Text Searching
     include PgSearch
-#    multisearchable :against => [:title, :location, :description]
+
+   #multisearchable :against => [:title, :location, :description]
     pg_search_scope :event_search, 
       against: {:title => 'A',:location => 'B',:description => 'C'},
       using: {tsearch: {dictionary: "english", :prefix => true}}
@@ -22,7 +25,7 @@ class Event < ActiveRecord::Base
     has_many :followers, :through => :followings, :source => :user
 
     #@events.notifications
-    has_many :notifications, as: :notifiable
+    has_many :notifications, as: :notifiable, dependent: :destroy
 
   #Attributes
     attr_accessible :description, :status, :raise_end, :event_time, :location, :minimum_raise, 
@@ -30,10 +33,13 @@ class Event < ActiveRecord::Base
      :request_video, :proof_video, :image, :remote_image_url, :image_cache, :remove_image
 
     mount_uploader :image, ImageUploader
+  #Delayed Job Processing
+    process_in_background :image
+
 
   #Callbacks
     before_save { |event| event.slug = event.slug.downcase }
-    #after_validation :geocoding
+    after_validation :geocoding
     after_update :create_notifications
 
   #Scopes
@@ -74,7 +80,7 @@ class Event < ActiveRecord::Base
 
     def geocoding
       if location_changed? and not location.nil? and not Rails.env.test? and not location.empty?
-        geocode
+        geocode.delay
       else
         false
       end

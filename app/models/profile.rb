@@ -8,6 +8,7 @@ class Profile < ActiveRecord::Base
       :updated_at, :created_at, :image_cache, :remove_image, :location, :latitude, :longitude
 
     mount_uploader :image, ImageUploader
+    process_in_background :image
 
   #Call Backs
     after_validation :geocoding
@@ -22,11 +23,12 @@ class Profile < ActiveRecord::Base
   #Functions
   def geocoding
     if location_changed? and not location.nil? and not Rails.env.test? and not location.empty?
-      geocode
+      geocode.delay
     else
       false
     end
   end
+
 
   def full_name=(fullname)
       first,last = fullname.split(' ')  # or some smarter way to split
