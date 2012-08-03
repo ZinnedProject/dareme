@@ -1,5 +1,149 @@
 
 ---
+authentications:
+  columns:
+  - id
+  - user_id
+  - provider
+  - nickname
+  - uid
+  - created_at
+  - updated_at
+  - token
+  records: 
+  - - '10'
+    - '1'
+    - youtube
+    - AdamAPerkins
+    - http://gdata.youtube.com/feeds/api/users/P5S42VFgNi06VTNnqUz_WQ
+    - '2012-08-01 17:39:09.932987'
+    - '2012-08-01 17:39:09.932987'
+    - 
+  - - '11'
+    - '1'
+    - facebook
+    - perkins2099
+    - '69205069'
+    - '2012-08-01 17:39:15.816771'
+    - '2012-08-01 17:39:15.816771'
+    - 
+
+---
+ckeditor_assets:
+  columns:
+  - id
+  - data_file_name
+  - data_content_type
+  - data_file_size
+  - assetable_id
+  - assetable_type
+  - type
+  - width
+  - height
+  - created_at
+  - updated_at
+  records: 
+  - - '1'
+    - images.jpg
+    - image/jpeg
+    - '8650'
+    - 
+    - 
+    - Ckeditor::Picture
+    - '204'
+    - '248'
+    - '2012-07-31 02:09:26.432269'
+    - '2012-07-31 02:09:26.432269'
+  - - '2'
+    - images.jpg
+    - image/jpeg
+    - '8650'
+    - 
+    - 
+    - Ckeditor::Picture
+    - '204'
+    - '248'
+    - '2012-07-31 02:25:20.560365'
+    - '2012-07-31 02:25:20.560365'
+  - - '3'
+    - images.jpg
+    - image/jpeg
+    - '8650'
+    - 
+    - 
+    - Ckeditor::Picture
+    - '204'
+    - '248'
+    - '2012-07-31 02:25:42.363242'
+    - '2012-07-31 02:25:42.363242'
+  - - '4'
+    - images.jpg
+    - image/jpeg
+    - '8650'
+    - 
+    - 
+    - Ckeditor::Picture
+    - '204'
+    - '248'
+    - '2012-07-31 02:38:18.95764'
+    - '2012-07-31 02:38:18.95764'
+  - - '5'
+    - images.jpg
+    - image/jpeg
+    - '8650'
+    - '1'
+    - User
+    - Ckeditor::Picture
+    - '204'
+    - '248'
+    - '2012-07-31 02:41:24.363094'
+    - '2012-07-31 02:41:24.363094'
+  - - '6'
+    - m72_hst_big.jpg
+    - image/jpeg
+    - '11677907'
+    - '1'
+    - User
+    - Ckeditor::Picture
+    - '4114'
+    - '4114'
+    - '2012-07-31 14:23:08.459015'
+    - '2012-07-31 14:23:08.459015'
+  - - '7'
+    - images.jpg
+    - image/jpeg
+    - '8650'
+    - '1'
+    - User
+    - Ckeditor::Picture
+    - '204'
+    - '248'
+    - '2012-07-31 16:40:37.443421'
+    - '2012-07-31 16:40:37.443421'
+  - - '8'
+    - m72_hst_big.jpg
+    - image/jpeg
+    - '11677907'
+    - '1'
+    - User
+    - Ckeditor::Picture
+    - '4114'
+    - '4114'
+    - '2012-07-31 16:40:46.584977'
+    - '2012-07-31 16:40:46.584977'
+  - - '9'
+    - chromium1.png
+    - image/png
+    - '332355'
+    - '1'
+    - User
+    - Ckeditor::Picture
+    - '1302'
+    - '744'
+    - '2012-08-02 22:53:22.122195'
+    - '2012-08-02 22:53:22.122195'
+
+---
 pg_search_documents:
   columns:
   - id
@@ -94,8 +238,8 @@ profiles:
     - ! "<p>\r\n\tI am awesome! Awesome!</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\t<a
       href=\"http://www.facebook.com\">Check out my facebook!</a></p>\r\n"
     - '2012-07-19 20:21:55.068109'
-    - '2012-07-21 14:09:20.039129'
-    - adam.jpg
+    - '2012-08-03 16:02:25.248424'
+    - 208832_10100143658973753_1258379506_n.jpg
     - Madison, WI
     - '-89.4012302'
     - '43.0730517'
@@ -794,6 +938,7 @@ users:
   - last_sign_in_ip
   - created_at
   - updated_at
+  - admin
   records: 
   - - '1'
     - perkins2099@gmail.com
@@ -808,7 +953,8 @@ users:
     - 127.0.0.1
     - 127.0.0.1
     - '2012-07-19 20:21:54.940697'
-    - '2012-07-28 15:43:22.06329'
+    - '2012-08-03 16:02:06.675515'
+    - true
   - - '2'
     - phil@gmail.com
     - phil
@@ -823,6 +969,7 @@ users:
     - 127.0.0.1
     - '2012-07-20 21:22:40.218124'
     - '2012-07-20 21:22:40.369447'
+    - false
   - - '3'
     - crackmeup3434@gmail.com
     - crackmeup
@@ -837,6 +984,7 @@ users:
     - 127.0.0.1
     - '2012-07-28 14:54:08.368508'
     - '2012-07-28 14:54:08.386799'
+    - false
   - - '4'
     - lady@pinklady.com
     - ladypink
@@ -851,6 +999,7 @@ users:
     - 127.0.0.1
     - '2012-07-28 15:23:38.296939'
     - '2012-07-28 15:23:38.308112'
+    - false
   - - '5'
     - stunt@lady.com
     - stuntlady
@@ -865,6 +1014,7 @@ users:
     - 127.0.0.1
     - '2012-07-28 15:25:05.009318'
     - '2012-07-28 15:25:05.0184'
+    - false
   - - '6'
     - mrman@manman.com
     - IamaManMan
@@ -879,6 +1029,7 @@ users:
     - 127.0.0.1
     - '2012-07-28 15:26:23.573324'
     - '2012-07-28 15:26:23.583812'
+    - false
   - - '7'
     - daredevil@lady.com
     - Iamadaredevil
@@ -893,3 +1044,4 @@ users:
     - 127.0.0.1
     - '2012-07-28 15:27:37.071348'
     - '2012-07-28 15:27:37.081925'
+    - false

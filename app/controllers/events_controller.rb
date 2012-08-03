@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     if not @query.nil?
       @events = @events.text_search(@query).default_order.limit_me
     elsif @type == 'local'  #This needs some work.  Very non optimal especially if having a ton of events     
-      @events.sort! {|a,b| Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[a.latitude,a.longitude]) <=> Geocoder::Calculations.distance_between([current_user.profile.latitude,current_user.profile.longitude],[b.latitude,b.longitude]) }
+      @events = Event.near(current_user.profile, 500, {:order => :distance, :units => :mi}).limit_me
     elsif @type == 'completed'
       @events = @events.status_completed.default_order.limit_me
     elsif @type == 'most_popular_open'
